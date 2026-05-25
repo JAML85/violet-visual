@@ -1,0 +1,208 @@
+---
+// src/pages/projects/luck.astro
+// Juan Manchado — Luck Portfolio Page
+---
+
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luck — Juan Manchado</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #050505;
+      --surface: #0d0d0d;
+      --border: rgba(255,255,255,0.07);
+      --text: #e8e8e6;
+      --text-muted: #6b6b68;
+      --accent: #c8ff00;
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      padding: 4rem 2rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    /* Botón Volver */
+    .back-link {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 3rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+
+    /* Cabecera */
+    header { margin-bottom: 4rem; }
+
+    .project-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-meta {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .project-desc {
+      font-size: 1.05rem;
+      color: #9a9a97;
+      max-width: 60ch;
+      margin-top: 1.5rem;
+      line-height: 1.7;
+    }
+
+    /* Vídeo 16:9 responsivo */
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      margin-bottom: 3rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+
+    /* Grid de renders — columna única, máximo ancho */
+    .renders-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      margin-top: 3rem;
+      width: 100%;
+    }
+
+    .render-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    /*
+      CAMBIO 1 — Eliminados image-rendering: crisp-edges y
+                 -webkit-optimize-contrast. Esas propiedades
+                 son para pixel art y dañan la suavidad de
+                 renders fotorrealistas 3D.
+
+      CAMBIO 2 — Añadido decoding="async" en cada <img>
+                 para no bloquear el hilo principal.
+
+      Sin más cambios en CSS — width:100% / height:auto
+      ya entrega la imagen a su resolución nativa completa.
+    */
+    .render-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: brightness(0.92);
+      transition: filter 0.4s ease;
+    }
+    .render-item img:hover {
+      filter: brightness(1);
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 2rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <a href="/" class="back-link">← Volver al inicio</a>
+
+    <header>
+      <p class="project-meta">Animación · Apple TV+</p>
+      <h1 class="project-title">Luck</h1>
+      <p class="project-meta" style="color: var(--text-muted)">Skydance Animation · Environment Modeler</p>
+      <p class="project-desc">
+        Modelado técnico de entornos orgánicos del reino de la suerte y props de producción de alta complejidad.
+        Flujo de trabajo optimizado para pipeline de animación internacional con mallas limpias de subdivisión.
+      </p>
+    </header>
+
+    <div class="video-wrapper">
+      <iframe
+        src="https://www.youtube.com/embed/aqz-KE-bpKQ"
+        title="Luck Breakdown"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <div class="renders-grid">
+
+      <!--
+        CAMBIO 3 — Corregido el tag roto: faltaba alt=" antes de Luck Render Final.
+        CAMBIO 4 — Extensión .webp en ambas imágenes.
+                   WebP = misma calidad visual que PNG, hasta 3x más ligero.
+                   Renombra tus archivos en /public/portfolio/ a .webp
+                   (en Blender: exporta PNG, luego convierte con Squoosh.app
+                   o arrastra a squoosh.app → WebP, calidad 90, sin pérdida visible).
+        CAMBIO 5 — loading="eager" en la primera imagen (está above the fold),
+                   loading="lazy" en el resto para no bloquear la carga inicial.
+        CAMBIO 6 — Añadido decoding="async" en todas.
+      -->
+
+      <div class="render-item">
+        <img
+          src="/portfolio/superthingsPoster.webp"
+          alt="Luck — Render final entorno"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+
+      <div class="render-item">
+        <img
+          src="/portfolio/superthingsPoster.webp"
+          alt="Luck — Vista wireframe / topología"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

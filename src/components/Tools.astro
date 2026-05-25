@@ -1,0 +1,218 @@
+---
+const tools = [
+  { name: 'Blender', category: 'MODELING', desc: 'Primary modeling & environment tool' },
+  { name: 'ZBrush', category: 'SCULPTING', desc: 'High-res detail sculpting' },
+  { name: 'Substance Painter', category: 'SURFACING', desc: 'PBR texturing & surfacing' },
+  { name: 'Maya', category: 'RIGGING & ANIM', desc: 'Pipeline integration & rigging' },
+  { name: 'Unreal Engine', category: 'REAL-TIME', desc: 'Real-time visualization' },
+];
+
+const skills = [
+  'Environment Modeling',
+  'Sets & Props Creation',
+  'UV Mapping & Unwrapping',
+  'PBR Surfacing',
+  'Pipeline Integration',
+  'Look Development',
+  'Hard Surface Modeling',
+  'Organic Modeling',
+  'Asset Management',
+  'Production Workflows',
+];
+---
+
+<section class="tools-section" id="tools">
+  <div class="container">
+    <div class="section-label">
+      <h2>TOOLS &amp; PIPELINE</h2>
+      <p>PRODUCTION SOFTWARE AND WORKFLOWS</p>
+    </div>
+
+    <div class="tools-layout">
+      <div class="tools-main">
+        {tools.map(tool => (
+          <div class="tool-item">
+            <div class="tool-left">
+              <div class="tool-cat">{tool.category}</div>
+              <div class="tool-name">{tool.name}</div>
+            </div>
+            <div class="tool-bar-wrap">
+              <div class="tool-bar">
+                <div class="tool-fill"></div>
+              </div>
+              <div class="tool-desc">{tool.desc}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="skills-panel">
+        <div class="skills-title">CORE SKILLS</div>
+        <div class="skills-tags">
+          {skills.map(skill => (
+            <span class="skill-tag">{skill}</span>
+          ))}
+        </div>
+
+        <div class="exp-badge">
+          <div class="exp-number">7+</div>
+          <div class="exp-label">YEARS OF EXPERIENCE<br>IN PRODUCTION</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .tools-section {
+    padding: 7rem 0;
+    background: var(--bg-0);
+    border-top: 1px solid var(--border);
+  }
+
+  .tools-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  /* Tool items */
+  .tool-item {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    padding: 1.4rem 0;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .tool-item:first-child { border-top: 1px solid var(--border); }
+  .tool-item:hover { background: rgba(229, 169, 59, 0.03); }
+
+  .tool-left {
+    flex: 0 0 160px;
+  }
+  .tool-cat {
+    font-size: 0.55rem;
+    letter-spacing: 2.5px;
+    color: var(--muted-2);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .tool-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    color: var(--text);
+  }
+
+  .tool-bar-wrap { flex: 1; }
+  .tool-bar {
+    height: 2px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+  }
+  .tool-fill {
+    height: 100%;
+    width: 90%;
+    background: linear-gradient(to right, var(--gold-dim), var(--gold));
+    border-radius: 2px;
+    transform-origin: left;
+    animation: barGrow 1.5s ease both;
+    animation-play-state: paused;
+  }
+  .tool-item:nth-child(1) .tool-fill { width: 95%; }
+  .tool-item:nth-child(2) .tool-fill { width: 88%; }
+  .tool-item:nth-child(3) .tool-fill { width: 92%; }
+  .tool-item:nth-child(4) .tool-fill { width: 80%; }
+  .tool-item:nth-child(5) .tool-fill { width: 75%; }
+
+  @keyframes barGrow {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+  .tool-fill.animated {
+    animation-play-state: running;
+  }
+
+  .tool-desc {
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+
+  /* Skills panel */
+  .skills-panel {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    padding: 2rem;
+    border-radius: 3px;
+  }
+  .skills-title {
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+  .skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 2.5rem;
+  }
+  .skill-tag {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    transition: border-color 0.2s, color 0.2s;
+    cursor: default;
+    border-radius: 2px;
+  }
+  .skill-tag:hover { border-color: var(--gold); color: var(--gold); }
+
+  .exp-badge {
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .exp-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    color: var(--gold);
+    line-height: 1;
+    letter-spacing: 2px;
+  }
+  .exp-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    text-transform: uppercase;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 900px) {
+    .tools-layout { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  // Animate bars on scroll
+  const fills = document.querySelectorAll('.tool-fill');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('animated');
+    });
+  }, { threshold: 0.3 });
+  fills.forEach(f => io.observe(f));
+</script>

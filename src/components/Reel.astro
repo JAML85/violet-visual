@@ -1,0 +1,110 @@
+---
+---
+
+<section class="reel-section" id="reel">
+  <div class="container">
+    <div class="section-label">
+      <h2>DEMO REEL</h2>
+      <p>PROFESSIONAL MODELING REEL 2024</p>
+    </div>
+
+    <div class="reel-wrapper">
+      <!-- Replace src with your Vimeo/YouTube embed URL -->
+      <div class="video-frame">
+        <iframe
+          src="https://player.vimeo.com/video/YOUR_VIMEO_ID?autoplay=0&title=0&byline=0&portrait=0&color=e5a93b"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen
+          title="Juan Manchado — Demo Reel 2024"
+        ></iframe>
+        <!-- Fallback placeholder shown when no iframe src is set -->
+        <div class="video-placeholder" aria-hidden="true">
+          <div class="play-icon">
+            <svg viewBox="0 0 80 80" fill="none">
+              <circle cx="40" cy="40" r="39" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+              <circle cx="40" cy="40" r="39" stroke="currentColor" stroke-width="1" stroke-dasharray="4 6" opacity="0.15"/>
+              <polygon points="32,26 58,40 32,54" fill="currentColor" opacity="0.6"/>
+            </svg>
+          </div>
+          <p>DEMO REEL 2024</p>
+          <p class="hint">Insert your Vimeo / YouTube embed URL in the <code>src</code></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .reel-section {
+    padding: 7rem 0;
+    background-color: var(--bg-0);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .reel-wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .video-frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+  }
+  .video-frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--gold);
+    opacity: 0.1;
+    z-index: 1;
+    pointer-events: none;
+    border-radius: 3px;
+  }
+
+  .video-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    z-index: 2;
+  }
+
+  /* Placeholder — remove once iframe src is set */
+  .video-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    z-index: 0;
+    color: var(--muted-2);
+  }
+  .play-icon {
+    width: 80px;
+    height: 80px;
+    color: var(--gold);
+    opacity: 0.5;
+  }
+  .video-placeholder p {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    color: var(--muted);
+  }
+  .hint {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 0.7rem !important;
+    letter-spacing: 0.5px !important;
+    color: var(--muted-2) !important;
+  }
+  code { color: var(--gold); font-size: 0.7rem; }
+</style>

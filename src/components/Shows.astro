@@ -1,0 +1,384 @@
+---
+const shows = [
+  {
+    title: 'SuperThings: Rivals of Kaboom — The Movie',
+    studio: 'Tandem Films ·Keytoon Studios',
+    type: 'Animation Feature Film',
+    year: '2026',
+    role: 'Senior Environment / Sets & Props Modeler',
+    tag: 'FEATURE FILM',
+    color: '#3b7ce5',
+    image: '/portfolio/superthingsPoster.jpg',
+    videoUrl: 'https://www.youtube.com/watch?v=tu_id_de_video', // <-- Cambia este enlace por el tuyo
+  },
+  {
+    title: 'Luck',
+    studio: 'Skydance Animation',
+    type: 'Animation Feature Film',
+    year: '2022',
+    role: 'Environment / Sets & Props Surfacing',
+    tag: 'APPLE TV+',
+    color: '#3be5a8',
+    image: '/portfolio/luckPoster.jpg',
+    platform: 'APPLE TV+',
+    videoUrl: 'https://www.youtube.com/watch?v=xSG5UX0EQVg', 
+  },
+  {
+    title: 'Angry Birds Journey',
+    studio: 'Able & Baker',
+    type: 'Cinematic Videogame',
+    year: '2022',
+    role: 'Environment / Sets & Props Modeler',
+    tag: 'VIDEOGAME',
+    color: '#e5893b',
+    image: '/portfolio/angrybirdsPoster.jpg',
+    videoUrl: '',
+  },
+{
+    title: 'Luck',
+    studio: 'Skydance Animation',
+    type: 'Animation Feature Film',
+    year: '2022',
+    role: 'Environment / Sets & Props Surfacing',
+    tag: 'YOUTUBE',
+    color: '#3be5a8',
+    image: '/portfolio/audiPoster.jpg',
+    platform: 'APPLE TV+',
+    videoUrl: 'https://www.youtube.com/watch?v=xSG5UX0EQVg', 
+  },
+
+
+  {
+    title: 'Paris & Pups',
+    studio: 'Hampa Studio',
+    type: 'Animation TV Series',
+    year: '2025',
+    role: 'Senior Environment / Sets & Props Surfacing',
+    tag: 'YOUTUBE',
+    color: '#e53b9f',
+    image: '/portfolio/parisPoster.jpg',
+    videoUrl: '',
+  },
+  {
+    title: 'Sky Rojo',
+    studio: 'DØ Postproduction',
+    type: 'VFX — TV Series',
+    year: '2022',
+    role: 'Environment / Sets & Props Modeler',
+    tag: 'NETFLIX',
+    color: '#e53b3b',
+    image: '/portfolio/skyrojoPoster.jpg',
+    platform: 'NETFLIX',
+    videoUrl: '',
+  },
+    {
+    title: 'Theme Park (Halloween)',
+    studio: 'Thelma & Boom, Inc.',
+    type: 'Theme Park Experience',
+    year: '2026',
+    role: 'Senior Environment / Sets & Props Modeler',
+    tag: 'THEME PARK',
+    color: '#8b3be5',
+    image: '/portfolio/ladyeverestPoster.jpg',
+    videoUrl: '',
+  },
+{
+    title: 'Sin huellas',
+    studio: 'Skydance Animation',
+    type: 'Animation Feature Film',
+    year: '2022',
+    role: 'Environment / Sets & Props Surfacing',
+    tag: 'PRIME VIDEO',
+    color: '#3be5a8',
+    image: '/portfolio/sinhuellasPoster.jpg',
+    platform: 'APPLE TV+',
+    videoUrl: 'https://www.youtube.com/watch?v=xSG5UX0EQVg', 
+  },
+
+{
+    title: 'Sin huellas',
+    studio: 'Skydance Animation',
+    type: 'Animation Feature Film',
+    year: '2022',
+    role: 'Environment / Sets & Props Surfacing',
+    tag: 'CONCERT',
+    color: '#3be5a8',
+    image: '/portfolio/aerosmithPoster.jpg',
+    platform: 'APPLE TV+',
+    videoUrl: 'https://www.youtube.com/watch?v=xSG5UX0EQVg', 
+  },
+{
+    title: 'Morgan',
+    studio: 'Skydance Animation',
+    type: 'Animation Feature Film',
+    year: '2022',
+    role: 'Environment / Sets & Props Surfacing',
+    tag: 'FEATURE FILM',
+    color: '#3be5a8',
+    image: '/portfolio/morganPoster.jpg',
+    platform: 'APPLE TV+',
+    videoUrl: 'https://www.youtube.com/watch?v=xSG5UX0EQVg', 
+  },
+{
+    title: 'Morgan',
+    studio: 'Skydance Animation',
+    type: 'Animation Feature Film',
+    year: '2022',
+    role: 'Environment / Sets & Props Surfacing',
+    tag: 'FEATURE FILM',
+    color: '#3be5a8',
+    image: '/portfolio/exploradoresPoster.jpg',
+    platform: 'APPLE TV+',
+    videoUrl: 'https://www.youtube.com/watch?v=xSG5UX0EQVg', 
+  },
+{
+    title: 'Morgan',
+    studio: 'Skydance Animation',
+    type: 'Animation Feature Film',
+    year: '2022',
+    role: 'Environment / Sets & Props Surfacing',
+    tag: 'FEATURE FILM',
+    color: '#3be5a8',
+    image: '/portfolio/unusualPoster.jpg',
+    platform: 'APPLE TV+',
+    videoUrl: 'https://www.youtube.com/watch?v=xSG5UX0EQVg', 
+  },
+{
+    title: 'Morgan',
+    studio: 'Skydance Animation',
+    type: 'Animation Feature Film',
+    year: '2022',
+    role: 'Environment / Sets & Props Surfacing',
+    tag: 'FEATURE FILM',
+    color: '#3be5a8',
+    image: '/portfolio/timePoster.jpg',
+    platform: 'APPLE TV+',
+    videoUrl: 'https://www.youtube.com/watch?v=xSG5UX0EQVg', 
+  },
+
+];
+---
+
+<section class="shows-section" id="shows">
+  <div class="container">
+    <div class="section-label">
+      <h2>SHOWS</h2>
+      <p>A SELECTION OF PROJECTS I HAD THE PLEASURE TO WORK ON</p>
+    </div>
+
+    <div class="shows-grid">
+      {shows.map((show) => {
+        // Si el show tiene configurado un videoUrl, usamos enlace <a>, si no, un <article> estático
+        const CardTag = show.videoUrl ? 'a' : 'article';
+        
+        return (
+          <CardTag 
+            class="show-card" 
+            href={show.videoUrl || undefined}
+            target={show.videoUrl ? "_blank" : undefined}
+            rel={show.videoUrl ? "noopener noreferrer" : undefined}
+            style={{
+              '--card-color': show.color,
+              '--card-img': show.image ? `url(${show.image})` : 'none'
+            }}
+          >
+            <div class="poster">
+              <div class="poster-bg"></div>
+              <div class="poster-stripe"></div>
+              <div class="poster-label">{show.title.split(':')[0]}</div>
+              <div class="poster-tag">{show.tag}</div>
+              <div class="poster-year">{show.year}</div>
+            </div>
+            <div class="card-info">
+              <h3>{show.title}</h3>
+              <p class="studio">{show.studio} — {show.type}</p>
+              <span class="role">{show.role}</span>
+            </div>
+          </CardTag>
+        );
+      })}
+    </div>
+
+    <div class="imdb-link">
+      <a href="https://www.imdb.com" target="_blank" class="imdb-cta">
+        <span class="line-deco"></span>
+        FIND MORE ON IMDB
+        <span class="line-deco"></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .shows-section {
+    padding: 7rem 0;
+    background-color: var(--bg-1);
+    background-image: var(--dot-pattern);
+    background-size: 20px 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .shows-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.2rem;
+  }
+
+  /* Tarjeta de estilo póster */
+  .show-card {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s;
+    text-decoration: none; /* Evita subrayados automáticos de enlaces del navegador */
+    display: block;
+  }
+  .show-card:hover {
+    transform: translateY(-8px);
+    z-index: 2;
+  }
+  .show-card:hover .poster {
+    border-color: var(--card-color);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 0 1px var(--card-color);
+  }
+  .show-card:hover .card-info {
+    border-color: var(--card-color);
+  }
+  .show-card:hover .role {
+    color: var(--card-color);
+  }
+
+  .poster {
+    aspect-ratio: 2 / 3;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .poster-bg {
+    position: absolute;
+    inset: 0;
+    background-image: var(--card-img), radial-gradient(ellipse at 40% 30%, color-mix(in srgb, var(--card-color) 20%, transparent) 0%, transparent 70%);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  /* Capa oscura sutil para contraste de texto */
+  .poster-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%);
+  }
+
+  .poster-stripe {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--card-color);
+    z-index: 2;
+  }
+  .poster-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.12);
+    text-align: center;
+    width: 90%;
+    line-height: 1.1;
+    z-index: 2;
+  }
+  .poster-tag {
+    position: absolute;
+    top: 0.7rem;
+    left: 0.7rem;
+    font-size: 0.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    background: var(--card-color);
+    color: #000;
+    padding: 2px 6px;
+    border-radius: 2px;
+    z-index: 2;
+  }
+  .poster-year {
+    position: absolute;
+    bottom: 1rem;
+    right: 0.7rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 2px;
+    z-index: 2;
+  }
+
+  /* Información de texto inferior */
+  .card-info {
+    padding: 1rem 0.8rem;
+    border: 1px solid var(--border);
+    border-top: none;
+    background: var(--bg-0);
+    transition: border-color 0.3s;
+    border-radius: 0 0 3px 3px;
+  }
+  .card-info h3 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 0.4rem;
+    color: var(--text);
+  }
+  .studio {
+    font-size: 0.65rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+  .role {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    line-height: 1.4;
+    display: block;
+  }
+
+  /* IMDb Link */
+  .imdb-link {
+    text-align: center;
+    margin-top: 4rem;
+  }
+  .imdb-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    transition: opacity 0.2s;
+  }
+  .imdb-cta:hover { opacity: 0.7; }
+  .line-deco {
+    display: inline-block;
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    vertical-align: middle;
+  }
+
+  @media (max-width: 1100px) {
+    .shows-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  @

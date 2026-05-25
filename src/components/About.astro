@@ -1,0 +1,157 @@
+---
+---
+
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="section-label">
+      <h2>ABOUT</h2>
+      <p>THAT'S ME</p>
+    </div>
+
+    <div class="about-layout">
+      <div class="about-text">
+        <p class="about-lead">
+          <span class="gold">SENIOR ENVIRONMENT &amp; PROPS ARTIST</span> working in the film industry.
+        </p>
+        <p>
+          I have 7+ years of experience creating production-ready environments, sets and props for 
+          international feature films, animated series and games. My work has been released on 
+          <span class="gold">Netflix</span>, <span class="gold">Apple TV+</span> and <span class="gold">Prime Video</span>.
+        </p>
+        <p>
+          I combine artistic quality with efficient, pipeline-driven workflows, collaborating with 
+          studios across Europe, North America and Asia.
+        </p>
+        <p>
+          I work primarily with <span class="gold">Blender, ZBrush, Substance Painter, Maya</span> and <span class="gold">Unreal Engine</span>.
+        </p>
+
+        <div class="about-cta">
+          <a href="mailto:juan.manchado@gmail.com" class="btn-gold">GET IN TOUCH</a>
+          <a href="https://www.linkedin.com/in/juanmanchado3d" target="_blank" class="btn-outline-sm">LINKEDIN</a>
+          <a href="https://www.jmanchado.net" target="_blank" class="btn-outline-sm">PERSONAL WEB</a>
+        </div>
+      </div>
+
+      <div class="about-stats">
+        <div class="stat">
+          <div class="stat-num">7+</div>
+          <div class="stat-label">Years in Production</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">15+</div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Major Platforms</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">5+</div>
+          <div class="stat-label">Countries</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-section {
+    padding: 7rem 0;
+    background: var(--bg-1);
+    border-top: 1px solid var(--border);
+  }
+
+  .about-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.9;
+    margin-bottom: 1.2rem;
+  }
+  .about-lead {
+    font-size: 1.05rem !important;
+    color: var(--text) !important;
+    font-weight: 400 !important;
+    margin-bottom: 1.8rem !important;
+  }
+  .gold { color: var(--gold); font-weight: 600; }
+
+  .about-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2.5rem;
+  }
+  .btn-gold {
+    padding: 0.8rem 2rem;
+    background: var(--gold);
+    color: #000;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: opacity 0.2s;
+  }
+  .btn-gold:hover { opacity: 0.85; color: #000; }
+
+  .btn-outline-sm {
+    padding: 0.8rem 1.5rem;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline-sm:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* Stats */
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .stat {
+    background: var(--bg-2);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: background 0.2s;
+  }
+  .stat:hover { background: var(--bg-3); }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    color: var(--gold);
+    letter-spacing: 2px;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--muted);
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 900px) {
+    .about-layout { grid-template-columns: 1fr; }
+    .about-stats { max-width: 400px; }
+  }
+</style>

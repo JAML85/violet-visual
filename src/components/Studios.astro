@@ -1,0 +1,161 @@
+---
+const cities = [
+  {
+    name: 'MADRID',
+    studios: ['Tandem Films', 'Ánima Kitchent', 'Hampa Studio', 'DØ Postproduction', 'Able & Baker', 'Core Entertainment'],
+  },
+  {
+    name: 'VALENCIA',
+    studios: ['Hampa Studio (Valencia)'],
+  },
+  {
+    name: 'USA',
+    studios: ['Skydance Animation', 'Thelma & Boom, Inc.', 'Motion Logic Studios'],
+  },
+  {
+    name: 'INTERNATIONAL',
+    studios: ['Blit Studio', 'Non-Fungible Labs', 'Hololux', 'Agora Studio'],
+  },
+];
+
+const clientLogos = [
+  { name: 'Netflix', size: 'large' },
+  { name: 'Apple TV+', size: 'large' },
+  { name: 'Prime Video', size: 'large' },
+  { name: 'Skydance', size: 'medium' },
+  { name: 'Tandem Films', size: 'medium' },
+  { name: 'Ánima Kitchent', size: 'medium' },
+  { name: 'Hampa Studio', size: 'medium' },
+  { name: 'Atlantis Animation', size: 'small' },
+  { name: 'Able & Baker', size: 'small' },
+  { name: 'DØ Postproduction', size: 'small' },
+  { name: 'Motion Logic Studios', size: 'small' },
+  { name: 'Blit Studio', size: 'small' },
+];
+---
+
+<section class="studios-section" id="studios">
+  <div class="container">
+    <div class="section-label">
+      <h2>STUDIOS &amp; CLIENTS</h2>
+      <p>COMPANIES I HAD THE PLEASURE TO WORK WITH</p>
+    </div>
+
+    <!-- Logo cloud -->
+    <div class="logo-cloud">
+      {clientLogos.map(c => (
+        <div class={`logo-pill size-${c.size}`}>
+          <span>{c.name}</span>
+        </div>
+      ))}
+    </div>
+
+    <!-- City breakdown (like Albert Valls reference) -->
+    <div class="cities-grid">
+      {cities.map(city => (
+        <div class="city-block">
+          <div class="city-name">{city.name}</div>
+          <div class="city-divider"></div>
+          {city.studios.map(s => (
+            <div class="city-studio">{s}</div>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .studios-section {
+    padding: 7rem 0;
+    background: var(--bg-1);
+    border-top: 1px solid var(--border);
+  }
+
+  /* Logo cloud */
+  .logo-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 5rem;
+  }
+
+  .logo-pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    transition: border-color 0.3s, transform 0.2s;
+    cursor: default;
+  }
+  .logo-pill:hover {
+    border-color: var(--gold);
+    transform: scale(1.04);
+  }
+  .logo-pill span {
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color 0.3s;
+    font-size: 0.75rem;
+  }
+  .logo-pill:hover span { color: var(--gold); }
+
+  .logo-pill.size-large {
+    padding: 1rem 2.5rem;
+  }
+  .logo-pill.size-large span { font-size: 1rem; }
+
+  .logo-pill.size-medium {
+    padding: 0.8rem 1.8rem;
+  }
+
+  .logo-pill.size-small {
+    padding: 0.6rem 1.2rem;
+  }
+  .logo-pill.size-small span { font-size: 0.65rem; }
+
+  /* Cities grid */
+  .cities-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    border-top: 1px solid var(--border);
+    padding-top: 3.5rem;
+  }
+
+  .city-block { text-align: center; }
+
+  .city-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 4px;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+  .city-divider {
+    width: 30px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0 auto 1rem;
+  }
+  .city-studio {
+    font-size: 0.7rem;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    line-height: 2;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 768px) {
+    .cities-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .cities-grid { grid-template-columns: 1fr; }
+  }
+</style>
