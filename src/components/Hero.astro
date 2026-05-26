@@ -18,7 +18,7 @@ const slides = [
   {
     image: '/portfolio/sky.jpg',
     project: 'Sky Red 3',
-    studio: 'Do Postproduction',
+    studio: 'The Frank barton Company',
   },
 
 ];
@@ -266,18 +266,21 @@ const slides = [
     font-size: 1rem;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 600;
+    color: #ffffff;
+    font-weight: 700;
     margin-bottom: 1.5rem;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.9);
   }
 
   .hero-tagline {
     font-size: 0.95rem;
-    color: var(--muted);
-    font-weight: 300;
+    color: rgba(255,255,255,0.88);
+    font-weight: 400;
     max-width: 580px;
     margin: 0 auto 2.5rem;
     line-height: 1.8;
+    text-shadow: 0 1px 10px rgba(0,0,0,0.95);
+
   }
 
   .platforms {
@@ -288,9 +291,10 @@ const slides = [
     font-size: 0.65rem;
     letter-spacing: 3px;
     font-weight: 700;
-    color: var(--muted-2);
+    color: rgba(255,255,255,0.65);
     text-transform: uppercase;
     margin-bottom: 3rem;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.8);
   }
   .dot-sep { color: var(--gold); font-size: 0.5rem; }
 
@@ -362,10 +366,10 @@ const slides = [
   const studioEl = document.getElementById('slide-studio');
 
   const projects = [
-    { project: 'SuperThings: Rivals of Kaboom — The Movie', studio: 'Tandem Films' },
-    { project: 'Hallowenia', studio: 'Ánima Kitchent' },
     { project: 'Luck', studio: 'Skydance Animation' },
-    { project: 'Messi and the Giants', studio: 'Atlantis Animation' },
+    { project: 'Angry Birds The journey', studio: 'Ánima Kitchent' },
+    { project: 'Audi presents a Short Letter', studio: 'The Frank Barton Company' },
+    { project: 'Sky Red 3', studio: 'Do Postproduction' },
   ];
 
   let current = 0;
