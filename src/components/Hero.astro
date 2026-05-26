@@ -1,13 +1,59 @@
 ---
+const slides = [
+  {
+    image: '/portfolio/luck00.jpg',
+    project: 'Luck',
+    studio: 'Skydance Animation',
+  },
+  {
+    image: '/portfolio/angry00.png',
+    project: 'Angry Birds the journey',
+    studio: 'Able&Baker',
+  },
+  {
+    image: '/portfolio/audi00.png',
+    project: 'Short Letter',
+    studio: 'The Frank barton Company',
+  },
+  {
+    image: '/portfolio/sky.jpg',
+    project: 'Sky Red 3',
+    studio: 'Do Postproduction',
+  },
+
+];
 ---
 
 <section class="hero" id="hero">
-  <!-- Animated dot grid background -->
-  <div class="hero-bg">
-    <div class="dot-grid"></div>
-    <div class="gradient-overlay"></div>
+
+  <!-- CARRUSEL DE FONDO -->
+  <div class="carousel" id="carousel" aria-hidden="true">
+    {slides.map((slide, i) => (
+      <div class={`slide ${i === 0 ? 'active' : ''}`} style={`background-image: url('${slide.image}')`}></div>
+    ))}
+    <!-- Overlay oscuro encima de las imágenes para que el texto sea legible -->
+    <div class="carousel-overlay"></div>
   </div>
 
+  <!-- FLECHAS DE NAVEGACIÓN -->
+  <button class="arrow arrow-prev" id="prev" aria-label="Anterior">&#8249;</button>
+  <button class="arrow arrow-next" id="next" aria-label="Siguiente">&#8250;</button>
+
+  <!-- INDICADOR DE SLIDE (nombre del proyecto) -->
+  <div class="slide-info" id="slide-info">
+    <span class="slide-project" id="slide-project">{slides[0].project}</span>
+    <span class="slide-sep">/</span>
+    <span class="slide-studio" id="slide-studio">{slides[0].studio}</span>
+  </div>
+
+  <!-- DOTS -->
+  <div class="dots" id="dots">
+    {slides.map((_, i) => (
+      <button class={`dot ${i === 0 ? 'active' : ''}`} data-index={i} aria-label={`Slide ${i + 1}`}></button>
+    ))}
+  </div>
+
+  <!-- CONTENIDO PRINCIPAL (encima del carrusel) -->
   <div class="hero-content">
     <div class="eyebrow">Environment/ Sets and Props Modeler</div>
     <h1 class="hero-name">
@@ -37,6 +83,7 @@
     <div class="scroll-line"></div>
     <span>SCROLL</span>
   </div>
+
 </section>
 
 <style>
@@ -51,34 +98,133 @@
     overflow: hidden;
   }
 
-  /* Background dot grid */
-  .hero-bg {
+  /* ---- CARRUSEL ---- */
+  .carousel {
     position: absolute;
     inset: 0;
-  }
-  .dot-grid {
-    position: absolute;
-    inset: 0;
-    background-image: var(--dot-pattern);
-    background-size: 24px 24px;
-    opacity: 0.6;
-    animation: drift 20s linear infinite;
-  }
-  @keyframes drift {
-    0% { background-position: 0 0; }
-    100% { background-position: 24px 24px; }
-  }
-  .gradient-overlay {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 80% 70% at 50% 50%, transparent 0%, var(--bg-0) 75%),
-                linear-gradient(to bottom, var(--bg-0) 0%, transparent 20%, transparent 80%, var(--bg-0) 100%);
+    z-index: 0;
   }
 
-  /* Content */
+  .slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+    /* Zoom suave como Ken Burns */
+    transform: scale(1.08);
+    transition: opacity 1.2s ease, transform 8s ease;
+  }
+  .slide.active {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Overlay degradado oscuro — igual que Albert Valls */
+  .carousel-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom,
+        rgba(10,10,10,0.55) 0%,
+        rgba(10,10,10,0.35) 40%,
+        rgba(10,10,10,0.55) 70%,
+        rgba(10,10,10,0.92) 100%
+      );
+    z-index: 1;
+  }
+
+  /* ---- FLECHAS ---- */
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,0.4);
+    font-size: 3.5rem;
+    cursor: pointer;
+    padding: 1rem;
+    line-height: 1;
+    transition: color 0.2s;
+    font-weight: 300;
+  }
+  .arrow:hover { color: var(--gold); }
+  .arrow-prev { left: 1.5rem; }
+  .arrow-next { right: 1.5rem; }
+
+  /* ---- INFO DEL SLIDE (abajo, estilo Albert Valls) ---- */
+  .slide-info {
+    position: absolute;
+    bottom: 5.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    transition: opacity 0.4s;
+  }
+  .slide-project {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  /* Línea dorada bajo el título, como Albert Valls */
+  .slide-project::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: var(--gold);
+    margin-top: 3px;
+  }
+  .slide-sep {
+    color: var(--muted-2);
+    font-size: 0.75rem;
+    padding-bottom: 2px;
+  }
+  .slide-studio {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ---- DOTS ---- */
+  .dots {
+    position: absolute;
+    bottom: 3.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    gap: 0.6rem;
+  }
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    padding: 0;
+  }
+  .dot.active {
+    background: var(--gold);
+    transform: scale(1.4);
+  }
+
+  /* ---- CONTENIDO PRINCIPAL ---- */
   .hero-content {
     position: relative;
-    z-index: 2;
+    z-index: 5;
     max-width: 900px;
     padding: 2rem;
     animation: fadeUp 1s ease both;
@@ -95,7 +241,6 @@
     color: var(--gold);
     margin-bottom: 1.5rem;
     text-transform: uppercase;
-    animation: fadeUp 1s 0.1s ease both;
   }
 
   .hero-name {
@@ -108,16 +253,12 @@
     align-items: center;
     margin-bottom: 1.2rem;
   }
-  .line { 
-    display: block; 
+  .line {
+    display: block;
     color: var(--text);
-    animation: fadeUp 1s 0.2s ease both;
   }
-  .line.accent { 
-    color: var(--gold);
-    animation-delay: 0.3s;
-    /* Outlined style on second line for drama */
-    -webkit-text-stroke: 1px var(--gold);
+  .line.accent {
+    -webkit-text-stroke: 1.5px var(--gold);
     color: transparent;
   }
 
@@ -128,7 +269,6 @@
     color: var(--muted);
     font-weight: 600;
     margin-bottom: 1.5rem;
-    animation: fadeUp 1s 0.35s ease both;
   }
 
   .hero-tagline {
@@ -138,7 +278,6 @@
     max-width: 580px;
     margin: 0 auto 2.5rem;
     line-height: 1.8;
-    animation: fadeUp 1s 0.45s ease both;
   }
 
   .platforms {
@@ -152,7 +291,6 @@
     color: var(--muted-2);
     text-transform: uppercase;
     margin-bottom: 3rem;
-    animation: fadeUp 1s 0.55s ease both;
   }
   .dot-sep { color: var(--gold); font-size: 0.5rem; }
 
@@ -160,7 +298,6 @@
     display: flex;
     gap: 1.2rem;
     justify-content: center;
-    animation: fadeUp 1s 0.65s ease both;
   }
 
   .btn-outline {
@@ -174,10 +311,8 @@
     transition: background 0.3s, color 0.3s;
     border-radius: 2px;
   }
-  .btn-outline:hover {
-    background: var(--gold);
-    color: #000;
-  }
+  .btn-outline:hover { background: var(--gold); color: #000; }
+
   .btn-ghost {
     padding: 0.9rem 2.8rem;
     border: 1.5px solid var(--border);
@@ -189,26 +324,21 @@
     transition: border-color 0.3s, color 0.3s;
     border-radius: 2px;
   }
-  .btn-ghost:hover {
-    border-color: var(--muted);
-    color: var(--text);
-  }
+  .btn-ghost:hover { border-color: var(--muted); color: var(--text); }
 
-  /* Scroll hint */
+  /* ---- SCROLL HINT ---- */
   .scroll-hint {
     position: absolute;
     bottom: 2.5rem;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 2.5rem;          /* lo ponemos a la izquierda como Albert Valls */
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    z-index: 2;
-    animation: fadeUp 1s 1s ease both;
+    z-index: 10;
   }
   .scroll-hint span {
-    font-size: 0.55rem;
+    font-size: 0.52rem;
     letter-spacing: 3px;
     color: var(--muted-2);
     font-weight: 700;
@@ -220,7 +350,56 @@
     animation: scrollPulse 2s ease-in-out infinite;
   }
   @keyframes scrollPulse {
-    0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
-    50% { opacity: 1; transform: scaleY(1); }
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
   }
 </style>
+
+<script>
+  const slides = document.querySelectorAll<HTMLElement>('.slide');
+  const dots = document.querySelectorAll<HTMLElement>('.dot');
+  const projectEl = document.getElementById('slide-project');
+  const studioEl = document.getElementById('slide-studio');
+
+  const projects = [
+    { project: 'SuperThings: Rivals of Kaboom — The Movie', studio: 'Tandem Films' },
+    { project: 'Hallowenia', studio: 'Ánima Kitchent' },
+    { project: 'Luck', studio: 'Skydance Animation' },
+    { project: 'Messi and the Giants', studio: 'Atlantis Animation' },
+  ];
+
+  let current = 0;
+  let timer: ReturnType<typeof setInterval>;
+
+  function goTo(index: number) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    if (projectEl) projectEl.textContent = projects[current].project;
+    if (studioEl) studioEl.textContent = projects[current].studio;
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  function startTimer() {
+    timer = setInterval(next, 5000);
+  }
+  function resetTimer() {
+    clearInterval(timer);
+    startTimer();
+  }
+
+  document.getElementById('next')?.addEventListener('click', () => { next(); resetTimer(); });
+  document.getElementById('prev')?.addEventListener('click', () => { prev(); resetTimer(); });
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      goTo(Number(dot.dataset.index));
+      resetTimer();
+    });
+  });
+
+  startTimer();
+</script>
