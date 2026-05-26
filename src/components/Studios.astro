@@ -1,70 +1,68 @@
 ---
-const cities = [
-  {
-    name: 'MADRID',
-    studios: ['Skydance Animation', 'Tandem Films', 'Ánima Kitchent', 'Hampa Studio', 'DØ Postproduction', 'Able&Baker', 'Core School'],
-  },
-  {
-    name: 'VALENCIA',
-    studios: ['Hampa Studio (Valencia)'],
-  },
-  {
-    name: 'USA',
-    studios: ['Thelma & Boom, Inc.', 'Motion Logic Studios'],
-  },
-  {
-    name: 'INTERNATIONAL',
-    studios: ['Blit Studio', 'Non-Fungible Labs', 'Hololux', 'Agora Studio', 'Toneplus Animation'],
-  },
-];
-
-const clientLogos = [
-  { name: 'Netflix', size: 'large' },
-  { name: 'Apple TV+', size: 'large' },
-  { name: 'Prime Video', size: 'large' },
-  { name: 'Skydance Animation', size: 'medium' },
-  { name: 'Tandem Films', size: 'medium' },
-  { name: 'Ánima Kitchent', size: 'medium' },
-  { name: 'Hampa Studio', size: 'medium' },
-  { name: 'Atlantis Animation', size: 'small' },
-  { name: 'Able&Baker', size: 'small' },
-  { name: 'DØ Postproduction', size: 'small' },
-  { name: 'Motion Logic Studios', size: 'small' },
-  { name: 'Blit Studio', size: 'small' },
-  { name: 'Thelma&Boom', size: 'small' },
-  { name: 'Toneplus Animation', size: 'small' },
-  { name: 'The Frank Barton Company', size: 'small' },	
-  
-];
+// Puedes añadir imports de Astro aquí si los necesitas en el futuro
 ---
 
 <section class="studios-section" id="studios">
   <div class="container">
     <div class="section-label">
-      <h2>STUDIOS &amp; CLIENTS</h2>
+      <h2>STUDIOS & CLIENTS</h2>
       <p>COMPANIES I HAD THE PLEASURE TO WORK WITH</p>
     </div>
 
-    <!-- Logo cloud -->
-    <div class="logo-cloud">
-      {clientLogos.map(c => (
-        <div class={`logo-pill size-${c.size}`}>
-          <span>{c.name}</span>
-        </div>
-      ))}
-    </div>
+    <div class="map-wrapper">
+      <svg id="world-map" style="width:100%; display:block;"></svg>
+      
+      <div class="map-logos">
+        <img src="/logos/apple-tv.png" alt="Apple TV+" class="map-logo logo-apple" />
+        <img src="/logos/netflix.png" alt="Netflix" class="map-logo logo-netflix" />
+        <img src="/logos/marvel.png" alt="Keytoon" class="map-logo logo-marvel" />
+        <img src="/logos/skydance.png" alt="Skydance Animation" class="map-logo logo-skydance" />
+        
+        <img src="/logos/disney.png" alt="Anima Kitchent" class="map-logo logo-disney" />
+        <img src="/logos/boulder.png" alt="Do Postproduction" class="map-logo logo-boulder" />
+        <img src="/logos/framestore.png" alt="Toneplus Animation" class="map-logo logo-framestore" />
+        <img src="/logos/axis.png" alt="The Motion Logic Studios" class="map-logo logo-axis" />
+        <img src="/logos/prime-video.png" alt="Prime Video" class="map-logo logo-prime" />
+      </div>
+    </div>g
 
-    <!-- City breakdown (like Albert Valls reference) -->
     <div class="cities-grid">
-      {cities.map(city => (
-        <div class="city-block">
-          <div class="city-name">{city.name}</div>
-          <div class="city-divider"></div>
-          {city.studios.map(s => (
-            <div class="city-studio">{s}</div>
-          ))}
-        </div>
-      ))}
+      <div class="city-block">
+        <div class="city-name">MADRID</div>
+        <div class="city-divider"></div>
+        <div class="city-studio">Tandem Films</div>
+        <div class="city-studio">DØ Postproduction</div>
+        <div class="city-studio">Able&Baker</div>
+        <div class="city-studio">The Frank Barton Company</div>
+        <div class="city-studio">Skydance Animation</div>
+      </div>
+      <div class="city-block">
+        <div class="city-name">VALENCIA</div>
+        <div class="city-divider"></div>
+        <div class="city-studio">Hampa Studio</div>
+        <div class="city-studio">La Cancan</div>
+      </div>
+      <div class="city-block">
+        <div class="city-name">USA</div>
+        <div class="city-divider"></div>
+        <div class="city-studio">Thelma & Boom, Inc.</div>
+        <div class="city-studio">The Motion Logic Studios</div>
+      </div>
+      <div class="city-block">
+        <div class="city-name">Canarias</div>
+        <div class="city-divider"></div>
+        <div class="city-studio">Anima Kitchent</div>
+        <div class="city-studio">B-Water</div>
+        <div class="city-studio">Atlantis</div>
+      </div>
+      <div class="city-block">
+        <div class="city-name">INTL.</div>
+        <div class="city-divider"></div>
+        <div class="city-studio">Blit Studio</div>
+        <div class="city-studio">Non-Fungible Labs</div>
+        <div class="city-studio">Hololux VR</div>
+        <div class="city-studio">Toneplus Animation</div>
+      </div>
     </div>
   </div>
 </section>
@@ -72,94 +70,127 @@ const clientLogos = [
 <style>
   .studios-section {
     padding: 7rem 0;
-    background: var(--bg-1);
-    border-top: 1px solid var(--border);
+    background: #0b0b0b;
+    border-top: 1px solid #1a1a1a;
+  }
+  
+  /* Contenedor del mapa relativo para permitir posicionar los logos encima */
+  .map-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    background: #0f0f0f;
+    border: 1px solid #1a1a1a;
   }
 
-  /* Logo cloud */
-  .logo-cloud {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    margin-bottom: 5rem;
+  /* Capa absoluta para los logos */
+  .map-logos {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Permite que el mapa responda debajo si es necesario */
   }
 
-  .logo-pill {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg-2);
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    transition: border-color 0.3s, transform 0.2s;
-    cursor: default;
-  }
-  .logo-pill:hover {
-    border-color: var(--gold);
-    transform: scale(1.04);
-  }
-  .logo-pill span {
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--muted);
-    transition: color 0.3s;
-    font-size: 0.75rem;
-  }
-  .logo-pill:hover span { color: var(--gold); }
-
-  .logo-pill.size-large {
-    padding: 1rem 2.5rem;
-  }
-  .logo-pill.size-large span { font-size: 1rem; }
-
-  .logo-pill.size-medium {
-    padding: 0.8rem 1.8rem;
+  /* Estilo base para cada logo (Filtro monocromático dorado/blanco como tu referencia) */
+  .map-logo {
+    position: absolute;
+    height: auto;
+    max-height: 28px; /* Tamaño controlado de los logos */
+    opacity: 0.75;
+    filter: grayscale(1) brightness(1.5) sepia(1) hue-rotate(5deg) saturate(2); /* Efecto dorado unificado */
+    transition: opacity 0.3s ease, filter 0.3s ease;
   }
 
-  .logo-pill.size-small {
-    padding: 0.6rem 1.2rem;
+  .map-logo:hover {
+    opacity: 1;
+    filter: none; /* Recupera su color original al pasar el ratón */
   }
-  .logo-pill.size-small span { font-size: 0.65rem; }
 
-  /* Cities grid */
+  /* POSICIONAMIENTO CSS ABSOLUTO (Distribución uniforme basada en porcentajes de pantalla) */
+  /* Ajusta estos valores a tu gusto para moverlos por el mapa */
+  .logo-apple      { top: 20%; left: 15%; max-height: 35px; }
+  .logo-netflix    { top: 45%; left: 55%; max-height: 24px; }
+  .logo-marvel     { top: 52%; left: 32%; max-height: 22px; }
+  .logo-skydance   { top: 32%; left: 22%; max-height: 20px; }
+  .logo-disney     { top: 18%; left: 35%; max-height: 26px; }
+  .logo-boulder    { top: 28%; left: 68%; max-height: 25px; }
+  .logo-framestore { top: 35%; left: 46%; max-height: 20px; }
+  .logo-axis       { top: 62%; left: 72%; max-height: 22px; }
+  .logo-prime      { top: 65%; left: 42%; max-height: 18px; }
+
+  /* Grid inferior de ciudades */
   .cities-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 2rem;
-    border-top: 1px solid var(--border);
-    padding-top: 3.5rem;
+    border-top: 1px solid #1a1a1a;
+    padding-top: 3rem;
   }
-
   .city-block { text-align: center; }
-
   .city-name {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     letter-spacing: 4px;
-    color: var(--gold);
-    margin-bottom: 0.6rem;
+    color: #e5a93b;
+    margin-bottom: 0.5rem;
   }
   .city-divider {
-    width: 30px;
-    height: 2px;
-    background: var(--gold);
+    width: 24px; height: 2px;
+    background: #e5a93b;
     margin: 0 auto 1rem;
   }
   .city-studio {
-    font-size: 0.7rem;
-    color: var(--muted);
+    font-size: 0.65rem;
+    color: #888;
     font-weight: 600;
     letter-spacing: 0.5px;
-    line-height: 2;
+    line-height: 2.2;
     text-transform: uppercase;
   }
-
-  @media (max-width: 768px) {
-    .cities-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 480px) {
-    .cities-grid { grid-template-columns: 1fr; }
+  @media (max-width: 900px) { .cities-grid { grid-template-columns: repeat(3,1fr); } }
+  @media (max-width: 600px) { 
+    .cities-grid { grid-template-columns: repeat(2,1fr); }
+    .map-logo { max-height: 18px; } /* Reducir logos en pantallas pequeñas */
   }
 </style>
+
+<script>
+  // Script limpio de D3 enfocado exclusivamente en pintar el mapa de fondo de forma impecable
+  async function drawMap() {
+    const [d3mod, topo] = await Promise.all([
+      import('https://cdn.jsdelivr.net/npm/d3@7/+esm'),
+      import('https://cdn.jsdelivr.net/npm/topojson-client@3/+esm'),
+    ]);
+
+    const svg = d3mod.select("#world-map");
+    const W = (svg.node() as SVGElement).parentElement!.clientWidth;
+    const H = Math.round(W * 0.52);
+    svg.attr("viewBox", `0 0 ${W} ${H}`).attr("height", H);
+
+    const proj = d3mod.geoNaturalEarth1()
+      .scale(W / 6.1)
+      .translate([W / 2, H / 2]);
+    const path = d3mod.geoPath().projection(proj);
+
+    const world: any = await d3mod.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
+    const countries = topo.feature(world, world.objects.countries) as any;
+
+    svg.append("rect").attr("width", W).attr("height", H).attr("fill", "#0f0f0f");
+    
+    // Pintar los países en un gris elegante muy oscuro para que resalten los logos de arriba
+    svg.append("g")
+      .selectAll("path")
+      .data(countries.features)
+      .join("path")
+      .attr("d", path)
+      .attr("fill", "#1e1e1e")
+      .attr("stroke", "#121212")
+      .attr("stroke-width", 0.6);
+  }
+
+  drawMap();
+</script>
