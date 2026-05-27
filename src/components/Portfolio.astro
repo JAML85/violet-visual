@@ -1,0 +1,147 @@
+---
+---
+
+<section class="portfolio-section" id="portfolio">
+  <div class="container">
+    <div class="section-label">
+      <h2>PORTFOLIO</h2>
+      <p>TAKE A LOOK AT MY PERSONAL AND PROFESSIONAL WORKS</p>
+    </div>
+
+    <div class="portfolio-grid">
+      <a href="/professional" class="portfolio-card">
+        <div class="card-image" style="background-image: url('/images/portfolio/profesional.jpg')"></div>
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <div class="card-label">PROFESSIONAL</div>
+          <div class="card-subtitle">Feature Films · TV Series · VFX · Games</div>
+          <div class="card-arrow">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+              <circle cx="13" cy="13" r="12" stroke="currentColor" stroke-width="1"/>
+              <path d="M9 13h8M14 10l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </a>
+
+      <a href="/personal" class="portfolio-card">
+        <div class="card-image" style="background-image: url('/images/portfolio/personal.jpg')"></div>
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <div class="card-label">PERSONAL</div>
+          <div class="card-subtitle">Personal Projects · Experiments · R&D</div>
+          <div class="card-arrow">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+              <circle cx="13" cy="13" r="12" stroke="currentColor" stroke-width="1"/>
+              <path d="M9 13h8M14 10l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .portfolio-section {
+    padding: 7rem 0;
+    background: var(--bg-1);
+    border-top: 1px solid var(--border);
+  }
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .portfolio-card {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: border-color 0.3s, transform 0.4s;
+  }
+  .portfolio-card:hover { 
+    border-color: var(--gold); 
+    transform: translateY(-6px); 
+  }
+  .card-image {
+    position: absolute; 
+    inset: 0;
+    background-size: cover; 
+    background-position: center;
+    background-color: var(--bg-2);
+    opacity: 0.55; 
+    transition: transform 0.6s ease, opacity 0.6s ease;
+  }
+  .portfolio-card:hover .card-image { 
+    transform: scale(1.04); 
+    opacity: 0.85; 
+  }
+  .card-overlay {
+    position: absolute; 
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.5) 50%, rgba(10,10,10,0.85) 100%);
+    z-index: 1;
+  }
+  .card-content {
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+    right: 0;
+    padding: 2rem 2.2rem; 
+    z-index: 2;
+  }
+  .card-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem; 
+    letter-spacing: 5px;
+    color: #fff; 
+    line-height: 1;
+    display: inline-block; 
+    position: relative;
+  }
+  .card-label::after {
+    content: ''; 
+    display: block;
+    width: 40%; 
+    height: 2px;
+    background: var(--gold); 
+    margin-top: 6px;
+    transition: width 0.35s ease;
+  }
+  .portfolio-card:hover .card-label::after { 
+    width: 100%; 
+  }
+  .card-subtitle {
+    font-size: 0.62rem; 
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.7); 
+    font-weight: 600;
+    text-transform: uppercase; 
+    margin-top: 0.6rem; 
+    margin-bottom: 1rem;
+  }
+  .card-arrow {
+    color: var(--gold); 
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .portfolio-card:hover .card-arrow { 
+    opacity: 1; 
+    transform: translateX(0); 
+  }
+  @media (max-width: 640px) {
+    .portfolio-grid { 
+      grid-template-columns: 1fr; 
+    }
+    .portfolio-card { 
+      aspect-ratio: 16 / 9; 
+    }
+  }
+</style>

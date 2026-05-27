@@ -1,0 +1,318 @@
+---
+// src/pages/personal.astro
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// ─── ARRAY DE PROYECTOS PERSONALES (ESTRUCTURA PREMIUM ARTSTATION) ──────────
+const projects = [
+{
+    title: 'Diner from The Iron Giant',
+    studio: 'Personal project based on F. Gardner artwork about "The Iron Giant". ',
+    role: 'Personal Project',
+    year: '',
+    images: [
+      '/images/personal/dinner/01.jpg', // Plano General (Grande)
+      '/images/personal/dinner/00.jpg', // Detalle 1 (Pequeño)
+      '/images/personal/dinner/02.jpg', // Detalle 2 (Pequeño)
+     
+    ],
+  },
+{
+    title: 'Door Monster S.A.',
+    studio: 'Personal project based on door Monsters S.A. artwork .',
+    role: 'Personal Project',
+    year: '',
+    images: [
+      '/images/personal/monster/03.jpg', // Plano General (Grande)
+      '/images/personal/monster/02.jpg', // Detalle 1 (Pequeño)
+      '/images/personal/monster/01.jpg', // Detalle 2 (Pequeño)
+      '/images/personal/monster/00.jpg',
+      '/images/personal/monster/04.jpg',
+      '/images/personal/monster/05.jpg',
+
+
+     
+    ],
+  },
+
+  
+  
+{
+    title: 'Moto',
+    studio: 'Personal project based on F. Gardner artwork .',
+    role: 'Personal Project',
+    year: '',
+    images: [
+      '/images/personal/moto/03.jpg', // Plano General (Grande)
+      '/images/personal/moto/02.jpg', // Detalle 1 (Pequeño)
+      '/images/personal/moto/01.jpg', // Detalle 2 (Pequeño)
+      '/images/personal/moto/00.jpg',
+     
+    ],
+  },
+
+{
+    title: 'Buckingham Palace Gates',
+    studio: 'Personal project based on F. Gardner artwork .',
+    role: 'Personal Project',
+    year: '',
+    images: [
+      '/images/personal/puerta/01.jpg', // Plano General (Grande)
+      '/images/personal/puerta/02.jpg', // Detalle 1 (Pequeño)
+      '/images/personal/puerta/00.jpg', // Detalle 2 (Pequeño)
+     
+    ],
+  },
+
+
+];
+---
+
+<Layout title="Personal — Juan Manchado">
+  <Header />
+
+  <main class="pro-main">
+    <div class="page-header">
+      <div class="container">
+        <a href="/#portfolio" class="back-link">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          BACK
+        </a>
+        <h1 class="page-title">PERSONAL</h1>
+        <p class="page-sub">Personal Projects · Experiments · R&D</p>
+      </div>
+    </div>
+
+    <div class="container projects-list">
+      {projects.map((project, pi) => (
+        <article class="project-block">
+          <div class="project-header">
+            <div class="project-meta">
+              <h2 class="project-title">{project.title}</h2>
+              <div class="project-studio">{project.studio}</div>
+            </div>
+            <div class="project-right">
+              <div class="project-role">{project.role}</div>
+              <div class="project-year">{project.year}</div>
+            </div>
+          </div>
+
+          <div class="artstation-grid">
+            {project.images.map((img, ii) => (
+              <button 
+                class={`thumb ${ii === 0 ? 'main-shot' : 'detail-shot'}`}
+                data-project={pi} 
+                data-index={ii} 
+                aria-label={`Ver imagen ${ii + 1} de ${project.title}`}
+              >
+                <img src={img} alt={`${project.title} — asset ${ii + 1}`} loading="lazy" />
+                <div class="thumb-overlay">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                    <circle cx="14" cy="14" r="13" stroke="white" stroke-width="1" opacity="0.7"/>
+                    <path d="M10 14h8M14 10l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </button>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </main>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visor de imagen">
+    <div class="lb-backdrop" id="lb-backdrop"></div>
+    <div class="lb-content">
+      <button class="lb-close" id="lb-close" aria-label="Cerrar">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+      <button class="lb-nav lb-prev" id="lb-prev" aria-label="Anterior">&#8249;</button>
+      <button class="lb-nav lb-next" id="lb-next" aria-label="Siguiente">&#8250;</button>
+      <div class="lb-img-wrap">
+        <img id="lb-img" src="" alt="" />
+      </div>
+      <div class="lb-info">
+        <span id="lb-title"></span>
+        <span id="lb-counter"></span>
+      </div>
+    </div>
+  </div>
+
+  <Footer />
+</Layout>
+
+<style>
+  .pro-main { min-height: 100vh; background: var(--bg-0); }
+  
+  /* ── HEADER ── */
+  .page-header { padding: 4rem 0 3rem; background: var(--bg-1); border-bottom: 1px solid var(--border); margin-bottom: 5rem; }
+  .back-link { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.65rem; font-weight: 700; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; transition: color 0.2s; margin-bottom: 1.5rem; }
+  .back-link:hover { color: var(--gold); }
+  .page-title { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; letter-spacing: 6px; color: var(--gold); line-height: 1; margin-bottom: 0.5rem; }
+  .page-sub { font-size: 0.7rem; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; font-weight: 600; }
+  
+  /* ── BLOCKS ── */
+  .projects-list { padding-bottom: 7rem; }
+  .project-block { margin-bottom: 7rem; border-bottom: 1px solid var(--border); padding-bottom: 6rem; }
+  .project-block:last-child { border-bottom: none; }
+  .project-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; margin-bottom: 2.5rem; }
+  .project-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; letter-spacing: 3px; color: var(--text); line-height: 1; margin-bottom: 0.5rem; }
+  .project-title::after { content: ''; display: block; width: 60px; height: 2px; background: var(--gold); margin-top: 8px; }
+  .project-studio { font-size: 0.72rem; letter-spacing: 2px; color: var(--gold); font-weight: 600; text-transform: uppercase; margin-top: 0.6rem; }
+  .project-right { text-align: right; flex-shrink: 0; }
+  .project-role { font-size: 0.65rem; letter-spacing: 1.5px; color: var(--muted); text-transform: uppercase; font-weight: 600; margin-bottom: 0.4rem; }
+  .project-year { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 2px; color: var(--border); }
+
+  /* ── GRID ESTILO ARTSTATION (1 Grande, 3 Pequeñas) ── */
+  .artstation-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+  .thumb {
+    position: relative; padding: 0; border: 1px solid var(--border); 
+    background: var(--bg-2); cursor: pointer; overflow: hidden; 
+    border-radius: 2px; transition: border-color 0.3s;
+  }
+  .thumb:hover { border-color: var(--gold); }
+  
+  /* Composición de tamaños */
+  .main-shot {
+    grid-column: span 3; /* Ocupa todo el ancho de la primera fila */
+    aspect-ratio: 21 / 9; /* Formato panorámico de cine espectacular */
+  }
+  .detail-shot {
+    grid-column: span 1; /* Las tres miniaturas de desglose abajo */
+    aspect-ratio: 16 / 9;
+  }
+
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
+  .thumb:hover img { transform: scale(1.03); }
+  .thumb-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
+  .thumb:hover .thumb-overlay { opacity: 1; }
+
+  /* ── LIGHTBOX ── */
+  .lightbox { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+  .lightbox.open { opacity: 1; pointer-events: all; }
+  .lb-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.94); backdrop-filter: blur(6px); }
+  .lb-content { position: relative; z-index: 2; max-width: 90vw; max-height: 90vh; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+  .lb-img-wrap { max-width: 85vw; max-height: 80vh; display: flex; align-items: center; justify-content: center; }
+  #lb-img { max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 2px; border: 1px solid var(--border); box-shadow: 0 30px 80px rgba(0,0,0,0.8); transition: opacity 0.2s; }
+  .lb-close { position: fixed; top: 1.5rem; right: 1.5rem; background: transparent; border: 1px solid var(--border); color: var(--muted); width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, color 0.2s; z-index: 3; }
+  .lb-close:hover { border-color: var(--gold); color: var(--gold); }
+  .lb-nav { position: fixed; top: 50%; transform: translateY(-50%); background: transparent; border: none; color: rgba(255,255,255,0.4); font-size: 4rem; cursor: pointer; padding: 1rem; line-height: 1; transition: color 0.2s; font-weight: 300; z-index: 3; }
+  .lb-nav:hover { color: var(--gold); }
+  .lb-prev { left: 1rem; }
+  .lb-next { right: 1rem; }
+  .lb-info { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 0 0.5rem; }
+  #lb-title { font-size: 0.7rem; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; font-weight: 600; }
+  #lb-counter { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 2px; color: var(--gold); }
+
+  @media (max-width: 768px) {
+    .artstation-grid { grid-template-columns: 1fr; }
+    .main-shot, .detail-shot { grid-column: span 1; aspect-ratio: 16 / 9; }
+    .project-header { flex-direction: column; }
+    .project-right { text-align: left; }
+  }
+</style>
+
+<script>
+  // ─── DATA DE PROYECTOS TOTALMENTE SINCRONIZADA CON EL FRONTMATTER ────────
+  const projectsData = [
+    {
+      title: 'Diner from The Iron Giant',
+      images: [
+        '/images/personal/dinner/01.jpg',
+        '/images/personal/dinner/00.jpg',
+        '/images/personal/dinner/02.jpg',
+       
+      ],
+    },
+    {
+      title: 'TRAIN STATION',
+      images: [
+        '/images/personal/train-station/01.jpg',
+        '/images/personal/train-station/02.jpg',
+        '/images/personal/train-station/03.jpg',
+        '/images/personal/train-station/04.jpg',
+      ],
+    },
+  ];
+
+  let currentProject = 0;
+  let currentIndex = 0;
+
+  const lightbox  = document.getElementById('lightbox')!;
+  const lbImg     = document.getElementById('lb-img') as HTMLImageElement;
+  const lbTitle   = document.getElementById('lb-title')!;
+  const lbCounter = document.getElementById('lb-counter')!;
+  const lbClose   = document.getElementById('lb-close')!;
+  const lbPrev    = document.getElementById('lb-prev')!;
+  const lbNext    = document.getElementById('lb-next')!;
+  const lbBg      = document.getElementById('lb-backdrop')!;
+
+  function openLightbox(pi: number, ii: number) {
+    currentProject = pi; 
+    currentIndex = ii;
+    updateLightbox();
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() { 
+    lightbox.classList.remove('open'); 
+    document.body.style.overflow = ''; 
+  }
+
+  function updateLightbox() {
+    const proj = projectsData[currentProject];
+    if (!proj) return;
+
+    lbImg.style.opacity = '0';
+    setTimeout(() => { 
+      lbImg.src = proj.images[currentIndex]; 
+      lbImg.style.opacity = '1'; 
+    }, 150);
+    lbTitle.textContent   = proj.title;
+    lbCounter.textContent = `${currentIndex + 1} / ${proj.images.length}`;
+  }
+
+  function showNext() { 
+    const proj = projectsData[currentProject];
+    if (!proj) return;
+    currentIndex = (currentIndex + 1) % proj.images.length; 
+    updateLightbox(); 
+  }
+
+  function showPrev() { 
+    const proj = projectsData[currentProject];
+    if (!proj) return;
+    currentIndex = (currentIndex - 1 + proj.images.length) % proj.images.length; 
+    updateLightbox(); 
+  }
+
+  // Captura de clics inyectando los datasets ausentes
+  document.querySelectorAll('.thumb').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const htmlBtn = btn as HTMLButtonElement;
+      openLightbox(Number(htmlBtn.dataset.project), Number(htmlBtn.dataset.index));
+    });
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+  lbBg.addEventListener('click', closeLightbox);
+  lbNext.addEventListener('click', showNext);
+  lbPrev.addEventListener('click', showPrev);
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft') showPrev();
+  });
+</script>

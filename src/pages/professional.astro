@@ -1,0 +1,424 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const projects = [
+  {
+    title: 'LUCK',
+    studio: 'Skydance Animation',
+    role: 'Environment / Sets & Props Surfacing',
+    year: '2022',
+    images: [
+      '/images/professional/luck/00.jpg',
+      '/images/professional/luck/01.jpg',
+      '/images/professional/luck/02.jpg',
+      '/images/professional/luck/03.jpg',
+    ],
+  },
+  {
+    title: 'Angry Birds: The Journey',
+    studio: 'Able&Baker',
+    role: 'Senior Environment/Sets&Props Modeler',
+    year: '2022',
+    images: [
+      '/images/professional/angrybirds/00.jpg',
+      '/images/professional/angrybirds/01.jpg',
+      '/images/professional/angrybirds/02.jpg',
+      '/images/professional/angrybirds/03.jpg',
+    ],
+  },
+
+{
+    title: 'Audi - A Shorter Letter',
+    studio: 'The Frank Barton Company',
+    role: 'Props Modeler',
+    year: '2019',
+    images: [
+      '/images/professional/audi/00.jpg',
+      '/images/professional/audi/01.jpg',
+    ],
+  },
+  {
+    title: 'Lady Everest',
+    studio: 'Pixelodeon',
+    role: 'Senior Set Modeling & Surfacing Artist',
+    year: '2025',
+    images: [
+      '/images/professional/ladyeverest/01.jpg',
+      '/images/professional/ladyeverest/02.jpg',
+      '/images/professional/ladyeverest/03.jpg',
+      '/images/professional/ladyeverest/04.jpg',
+      '/images/professional/ladyeverest/05.jpg',
+      '/images/professional/ladyeverest/06.jpg',
+      '/images/professional/ladyeverest/07.jpg',
+    ],
+  },
+  
+  
+{
+    title: 'Aku Dream',
+    studio: 'Time',
+    role: 'Environment/Sets&Props Surfacing',
+    year: '2022',
+    images: [
+      '/images/professional/aku/15.jpg',
+      '/images/professional/aku/07.jpg',
+      '/images/professional/aku/09.jpg',
+      '/images/professional/aku/14.jpg',
+        
+   
+    ],
+  },
+
+
+];
+
+// Serializar para el script del cliente
+const projectsJSON = JSON.stringify(projects.map(p => ({ title: p.title, images: p.images })));
+---
+
+<Layout title="Professional — Juan Manchado">
+  <Header />
+
+  <main class="pro-main">
+
+    <div class="page-header">
+      <div class="container">
+        <a href="/#portfolio" class="back-link">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          BACK
+        </a>
+        <h1 class="page-title">PROFESSIONAL</h1>
+        <p class="page-sub">Feature Films · TV Series · VFX · Games</p>
+      </div>
+    </div>
+
+    <div class="container projects-list">
+      {projects.map((project, pi) => (
+        <article class="project-block">
+          <div class="project-header">
+            <div class="project-meta">
+              <h2 class="project-title">{project.title}</h2>
+              <div class="project-studio">{project.studio}</div>
+            </div>
+            <div class="project-right">
+              <div class="project-role">{project.role}</div>
+              <div class="project-year">{project.year}</div>
+            </div>
+          </div>
+
+          <div class="thumbs-grid">
+            {project.images.map((img, ii) => (
+              <button
+                class="thumb"
+                data-project={pi}
+                data-index={ii}
+                data-src={img}
+                aria-label={`Ver imagen ${ii + 1} de ${project.title}`}
+              >
+                <img src={img} alt={`${project.title} — frame ${ii + 1}`} loading="lazy" />
+                <div class="thumb-overlay">
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <circle cx="16" cy="16" r="15" stroke="white" stroke-width="1" opacity="0.8"/>
+                    <path d="M11 16h10M18 12l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </button>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <div class="lb-backdrop" id="lb-backdrop"></div>
+
+    <button class="lb-close" id="lb-close" aria-label="Cerrar">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M15 5L5 15M5 5l10 10"/>
+      </svg>
+    </button>
+
+    <button class="lb-arrow lb-prev" id="lb-prev">&#8249;</button>
+    <button class="lb-arrow lb-next" id="lb-next">&#8250;</button>
+
+    <div class="lb-center">
+      <img id="lb-img" src="" alt="" />
+    </div>
+
+    <div class="lb-bar">
+      <span id="lb-title"></span>
+      <span id="lb-counter"></span>
+    </div>
+  </div>
+
+  <Footer />
+</Layout>
+
+<style>
+  .pro-main { padding-top: 0; min-height: 100vh; background: var(--bg-0); }
+
+  .page-header {
+    padding: 4rem 0 3rem;
+    background: var(--bg-1);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 5rem;
+  }
+  .back-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 2px;
+    color: var(--muted); text-transform: uppercase;
+    transition: color 0.2s; margin-bottom: 1.5rem;
+    text-decoration: none;
+  }
+  .back-link:hover { color: var(--gold); }
+  .page-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem; letter-spacing: 6px;
+    color: var(--gold); line-height: 1; margin-bottom: 0.5rem;
+  }
+  .page-sub {
+    font-size: 0.7rem; letter-spacing: 3px;
+    color: var(--muted); text-transform: uppercase; font-weight: 600;
+  }
+
+  .projects-list { padding-bottom: 7rem; }
+  .project-block {
+    margin-bottom: 6rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 6rem;
+  }
+  .project-block:last-child { border-bottom: none; }
+
+  .project-header {
+    display: flex; justify-content: space-between;
+    align-items: flex-start; gap: 2rem; margin-bottom: 2rem;
+  }
+  .project-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem; letter-spacing: 3px;
+    color: var(--text); line-height: 1; margin-bottom: 0.4rem;
+  }
+  .project-title::after {
+    content: ''; display: block;
+    width: 60px; height: 2px;
+    background: var(--gold); margin-top: 8px;
+  }
+  .project-studio {
+    font-size: 0.72rem; letter-spacing: 2px;
+    color: var(--gold); font-weight: 600;
+    text-transform: uppercase; margin-top: 0.6rem;
+  }
+  .project-right { text-align: right; flex-shrink: 0; }
+  .project-role {
+    font-size: 0.65rem; letter-spacing: 1.5px;
+    color: var(--muted); text-transform: uppercase;
+    font-weight: 600; margin-bottom: 0.4rem;
+  }
+  .project-year {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem; letter-spacing: 2px; color: var(--border);
+  }
+
+  /* GRID MINIATURAS */
+  .thumbs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+  .thumb {
+    position: relative; padding: 0;
+    background: var(--bg-2); cursor: pointer;
+    aspect-ratio: 16 / 9; overflow: hidden;
+    border-radius: 2px; border: 1px solid var(--border);
+    transition: border-color 0.25s;
+  }
+  .thumb:hover { border-color: var(--gold); }
+  .thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform 0.4s ease;
+    pointer-events: none;
+  }
+  .thumb:hover img { transform: scale(1.05); }
+  .thumb-overlay {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.25s;
+    pointer-events: none;
+  }
+  .thumb:hover .thumb-overlay { opacity: 1; }
+
+  /* LIGHTBOX */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 9999;
+    display: none;                  /* oculto por defecto */
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .lightbox.open { display: flex; } /* JS añade .open */
+
+  .lb-backdrop {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+  }
+
+  .lb-close {
+    position: fixed; top: 1.2rem; right: 1.2rem; z-index: 10;
+    width: 42px; height: 42px; border-radius: 50%;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.6);
+    cursor: pointer; display: flex;
+    align-items: center; justify-content: center;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .lb-close:hover { border-color: var(--gold); color: var(--gold); }
+
+  .lb-arrow {
+    position: fixed; top: 50%; transform: translateY(-50%); z-index: 10;
+    background: transparent; border: none;
+    color: rgba(255,255,255,0.35); font-size: 4.5rem;
+    cursor: pointer; padding: 0.5rem 1rem; line-height: 1;
+    font-weight: 200;
+    transition: color 0.2s;
+    user-select: none;
+  }
+  .lb-arrow:hover { color: var(--gold); }
+  .lb-prev { left: 0.5rem; }
+  .lb-next { right: 0.5rem; }
+
+  .lb-center {
+    position: relative; z-index: 5;
+    max-width: 88vw; max-height: 82vh;
+    display: flex; align-items: center; justify-content: center;
+  }
+  #lb-img {
+    max-width: 88vw; max-height: 82vh;
+    width: auto; height: auto;
+    object-fit: contain;
+    border-radius: 2px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.9);
+    display: block;
+    transition: opacity 0.18s ease;
+  }
+
+  .lb-bar {
+    position: relative; z-index: 5;
+    display: flex; justify-content: space-between;
+    align-items: center;
+    width: min(88vw, 1100px);
+    padding: 0 0.25rem;
+  }
+  #lb-title {
+    font-size: 0.65rem; letter-spacing: 2px;
+    color: rgba(255,255,255,0.45); text-transform: uppercase; font-weight: 600;
+  }
+  #lb-counter {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem; letter-spacing: 2px; color: var(--gold);
+  }
+
+  @media (max-width: 768px) {
+    .thumbs-grid { grid-template-columns: repeat(2,1fr); }
+    .project-header { flex-direction: column; }
+    .project-right { text-align: left; }
+  }
+</style>
+
+<!-- Pasar datos del servidor al cliente de forma segura -->
+<script type="application/json" id="projects-data" set:html={projectsJSON}></script>
+
+<script>
+  // Leer datos inyectados desde el servidor
+  const projectsData: { title: string; images: string[] }[] =
+    JSON.parse(document.getElementById('projects-data')!.textContent!);
+
+  let currentProject = 0;
+  let currentIndex   = 0;
+
+  const lightbox  = document.getElementById('lightbox')!;
+  const lbImg     = document.getElementById('lb-img') as HTMLImageElement;
+  const lbTitle   = document.getElementById('lb-title')!;
+  const lbCounter = document.getElementById('lb-counter')!;
+  const lbClose   = document.getElementById('lb-close')!;
+  const lbPrev    = document.getElementById('lb-prev')!;
+  const lbNext    = document.getElementById('lb-next')!;
+  const lbBg      = document.getElementById('lb-backdrop')!;
+
+  function openLightbox(pi: number, ii: number) {
+    currentProject = pi;
+    currentIndex   = ii;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    loadImage();
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+    lbImg.src = '';
+  }
+
+  function loadImage() {
+    const proj = projectsData[currentProject];
+    lbImg.style.opacity = '0';
+    const newSrc = proj.images[currentIndex];
+    const tmp = new Image();
+    tmp.onload = () => {
+      lbImg.src = newSrc;
+      lbImg.style.opacity = '1';
+    };
+    tmp.onerror = () => {
+      // Si la imagen no existe muestra el src igualmente
+      lbImg.src = newSrc;
+      lbImg.style.opacity = '1';
+    };
+    tmp.src = newSrc;
+    lbTitle.textContent   = proj.title;
+    lbCounter.textContent = `${currentIndex + 1} / ${proj.images.length}`;
+  }
+
+  function showNext() {
+    const len = projectsData[currentProject].images.length;
+    currentIndex = (currentIndex + 1) % len;
+    loadImage();
+  }
+  function showPrev() {
+    const len = projectsData[currentProject].images.length;
+    currentIndex = (currentIndex - 1 + len) % len;
+    loadImage();
+  }
+
+  // Clic en miniaturas
+  document.querySelectorAll<HTMLButtonElement>('.thumb').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openLightbox(Number(btn.dataset.project), Number(btn.dataset.index));
+    });
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+  lbBg.addEventListener('click', closeLightbox);
+  lbNext.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
+  lbPrev.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape')     closeLightbox();
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft')  showPrev();
+  });
+</script>
