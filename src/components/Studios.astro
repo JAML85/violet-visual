@@ -9,7 +9,6 @@
       <p>COMPANIES I HAD THE PLEASURE TO WORK WITH</p>
     </div>
 
-    <!-- MAPA CON TODOS LOS LOGOS CORREGIDOS (CON SKYDANCE VISIBLE) -->
     <div class="map-wrapper">
       <svg id="world-map" style="width:100%; display:block;"></svg>
       
@@ -18,17 +17,19 @@
         <img src="/logos/netflix.png" alt="Netflix" class="map-logo logo-netflix" />
         <img src="/logos/skydance.png" alt="Skydance Animation" class="map-logo logo-skydance" />
         
-        <!-- Logos con cajas de fondo claro que necesitan integración -->
         <img src="/logos/anima.jpg" alt="Anima Kitchent" class="map-logo logo-blended logo-anima" />
         <img src="/logos/do.png" alt="DØ Postproduction" class="map-logo logo-blended logo-dopost" />
         <img src="/logos/frank.jpg" alt="The Frank Barton Company" class="map-logo logo-blended logo-frank" />
         <img src="/logos/motion.jpg" alt="The Motion Logic Studios" class="map-logo logo-blended logo-motion" />
         <img src="/logos/hampa.jpg" alt="Hampa Studio" class="map-logo logo-blended logo-hampa" />
         <img src="/logos/toneplus.jpg" alt="Toneplus Animation" class="map-logo logo-blended logo-toneplus" />
+        <img src="/logos/keytoon.png" alt="Keytoon" class="map-logo logo-blended logo-keytoon" />
+        <img src="/logos/tandem.png" alt="Tandem" class="map-logo logo-blended logo-tandem" />
+        <img src="/logos/water.png" alt="B.Water" class="map-logo logo-blended logo-water" />
+        <img src="/logos/core.png" alt="Core School" class="map-logo logo-blended logo-core" />
       </div>
     </div>
 
-    <!-- GRID INFERIOR DE CIUDADES -->
     <div class="cities-grid">
       <div class="city-block">
         <div class="city-name">MADRID</div>
@@ -96,43 +97,51 @@
     pointer-events: none;
   }
 
-  /* ESTILO BASE PARA TODOS LOS LOGOS */
+  /* TAMAÑO POTENTE UNIFORME */
   .map-logo {
     position: absolute;
     z-index: 10;
     width: auto;
-    max-width: 115px;
-    height: auto;
+    height: 72px;
+    max-width: 190px;
     opacity: 0.85;
     transition: all 0.3s ease;
     pointer-events: auto;
     object-fit: contain;
   }
 
-  /* CLASE ESPECÍFICA PARA LOS LOGOS CON FONDO CLARO (Elimina el parche cuadrado de fondo) */
+  /* Fusión limpia para quitar parches cuadrados claros */
   .logo-blended {
     mix-blend-mode: multiply;
-    filter: brightness(1.2); /* Les da un extra de luz para que resalten sobre el fondo oscuro */
+    filter: brightness(1.2);
   }
 
-  /* Efecto Hover limpio */
   .map-logo:hover {
     opacity: 1;
     transform: scale(1.05);
   }
 
-  /* DISTRIBUCIÓN UNIFORME POR EL MAPA */
-  .logo-prime      { top: 22%; left: 12%; max-height: 100px; } 
-  .logo-skydance   { top: 40%; left: 24%; max-height: 100px; } /* Ajustado posición y tamaño para que no se pise */
-  .logo-anima      { top: 68%; left: 16%; max-height: 100px; } 
+  /* 🗺️ DISTRIBUCIÓN EVOLUCIONADA SIN SOLAPAMIENTOS 🗺️ */
+  /* BANDA IZQUIERDA (Pacífico e Índico Oeste / Américas) */
+  .logo-prime      { top: 12%; left: 5%; }   /* Extremo superior izquierdo */
+  .logo-skydance   { top: 46%; left: 20%; }  /* Centro de USA */
+  .logo-water      { top: 62%; left: 4%; }   /* Pacífico Sur Central (Espacio enorme libre) */
+  .logo-anima      { top: 76%; left: 16%; }  /* Sudamérica inferior */
+
+  /* BANDA CENTRAL (Atlántico / Europa / África) */
+  .logo-netflix    { top: 8%; left: 46%; }   /* Groenlandia alta (Limpio) */
+  .logo-core       { top: 32%; left: 45%; }  /* Europa / Mediterráneo */
+  .logo-frank      { top: 56%; left: 44%; }  /* África Centro-Sur */
+
+  /* BANDA DERECHA (Asia / Oceanía / Extremos) */
+  .logo-dopost     { top: 22%; left: 74%; }  /* Siberia / Rusia */
+  .logo-hampa      { top: 50%; left: 63%; }  /* Oriente / Índico Norte */
+  .logo-motion     { top: 66%; left: 83%; }  /* Oceanía */
+  .logo-toneplus   { top: 84%; left: 68%; }  /* Índico Sur profundo */
   
-  .logo-netflix    { top: 18%; left: 46%; max-height: 100px; } 
-  .logo-frank      { top: 46%; left: 45%; max-height: 100px; } 
-  
-  .logo-dopost     { top: 28%; left: 74%; max-height: 100px; } 
-  .logo-hampa      { top: 52%; left: 64%; max-height: 100px; } 
-  .logo-motion     { top: 64%; left: 84%; max-height: 100px; } 
-  .logo-toneplus   { top: 82%; left: 70%; max-height: 100px; }
+  /* AJUSTE BANDA INFERIOR ATLÁNTICO */
+  .logo-keytoon    { top: 82%; left: 5%; }  /* Pacífico Sur extremo */
+  .logo-tandem     { top: 82%; left: 32%; }  /* Atlántico Sur libre */
 
   /* Grid inferior de ciudades */
   .cities-grid {
@@ -169,7 +178,7 @@
   }
   @media (max-width: 600px) { 
     .cities-grid { grid-template-columns: repeat(2,1fr); }
-    .map-logo { max-height: 20px !important; max-width: 55px; }
+    .map-logo { height: 28px !important; max-width: 80px; }
   }
 </style>
 
