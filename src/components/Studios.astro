@@ -9,23 +9,26 @@
       <p>COMPANIES I HAD THE PLEASURE TO WORK WITH</p>
     </div>
 
+    <!-- MAPA CON TODOS LOS LOGOS CORREGIDOS (CON SKYDANCE VISIBLE) -->
     <div class="map-wrapper">
       <svg id="world-map" style="width:100%; display:block;"></svg>
       
       <div class="map-logos">
-        <img src="/logos/apple-tv.png" alt="Apple TV+" class="map-logo logo-apple" />
+        <img src="/logos/prime.png" alt="Prime Video" class="map-logo logo-prime" />
         <img src="/logos/netflix.png" alt="Netflix" class="map-logo logo-netflix" />
-        <img src="/logos/marvel.png" alt="Keytoon" class="map-logo logo-marvel" />
         <img src="/logos/skydance.png" alt="Skydance Animation" class="map-logo logo-skydance" />
         
-        <img src="/logos/disney.png" alt="Anima Kitchent" class="map-logo logo-disney" />
-        <img src="/logos/boulder.png" alt="Do Postproduction" class="map-logo logo-boulder" />
-        <img src="/logos/framestore.png" alt="Toneplus Animation" class="map-logo logo-framestore" />
-        <img src="/logos/axis.png" alt="The Motion Logic Studios" class="map-logo logo-axis" />
-        <img src="/logos/prime-video.png" alt="Prime Video" class="map-logo logo-prime" />
+        <!-- Logos con cajas de fondo claro que necesitan integración -->
+        <img src="/logos/anima.jpg" alt="Anima Kitchent" class="map-logo logo-blended logo-anima" />
+        <img src="/logos/do.png" alt="DØ Postproduction" class="map-logo logo-blended logo-dopost" />
+        <img src="/logos/frank.jpg" alt="The Frank Barton Company" class="map-logo logo-blended logo-frank" />
+        <img src="/logos/motion.jpg" alt="The Motion Logic Studios" class="map-logo logo-blended logo-motion" />
+        <img src="/logos/hampa.jpg" alt="Hampa Studio" class="map-logo logo-blended logo-hampa" />
+        <img src="/logos/toneplus.jpg" alt="Toneplus Animation" class="map-logo logo-blended logo-toneplus" />
       </div>
-    </div>g
+    </div>
 
+    <!-- GRID INFERIOR DE CIUDADES -->
     <div class="cities-grid">
       <div class="city-block">
         <div class="city-name">MADRID</div>
@@ -74,7 +77,6 @@
     border-top: 1px solid #1a1a1a;
   }
   
-  /* Contenedor del mapa relativo para permitir posicionar los logos encima */
   .map-wrapper {
     position: relative;
     width: 100%;
@@ -85,42 +87,52 @@
     border: 1px solid #1a1a1a;
   }
 
-  /* Capa absoluta para los logos */
   .map-logos {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* Permite que el mapa responda debajo si es necesario */
+    pointer-events: none;
   }
 
-  /* Estilo base para cada logo (Filtro monocromático dorado/blanco como tu referencia) */
+  /* ESTILO BASE PARA TODOS LOS LOGOS */
   .map-logo {
     position: absolute;
+    z-index: 10;
+    width: auto;
+    max-width: 115px;
     height: auto;
-    max-height: 28px; /* Tamaño controlado de los logos */
-    opacity: 0.75;
-    filter: grayscale(1) brightness(1.5) sepia(1) hue-rotate(5deg) saturate(2); /* Efecto dorado unificado */
-    transition: opacity 0.3s ease, filter 0.3s ease;
+    opacity: 0.85;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+    object-fit: contain;
   }
 
+  /* CLASE ESPECÍFICA PARA LOS LOGOS CON FONDO CLARO (Elimina el parche cuadrado de fondo) */
+  .logo-blended {
+    mix-blend-mode: multiply;
+    filter: brightness(1.2); /* Les da un extra de luz para que resalten sobre el fondo oscuro */
+  }
+
+  /* Efecto Hover limpio */
   .map-logo:hover {
     opacity: 1;
-    filter: none; /* Recupera su color original al pasar el ratón */
+    transform: scale(1.05);
   }
 
-  /* POSICIONAMIENTO CSS ABSOLUTO (Distribución uniforme basada en porcentajes de pantalla) */
-  /* Ajusta estos valores a tu gusto para moverlos por el mapa */
-  .logo-apple      { top: 20%; left: 15%; max-height: 35px; }
-  .logo-netflix    { top: 45%; left: 55%; max-height: 24px; }
-  .logo-marvel     { top: 52%; left: 32%; max-height: 22px; }
-  .logo-skydance   { top: 32%; left: 22%; max-height: 20px; }
-  .logo-disney     { top: 18%; left: 35%; max-height: 26px; }
-  .logo-boulder    { top: 28%; left: 68%; max-height: 25px; }
-  .logo-framestore { top: 35%; left: 46%; max-height: 20px; }
-  .logo-axis       { top: 62%; left: 72%; max-height: 22px; }
-  .logo-prime      { top: 65%; left: 42%; max-height: 18px; }
+  /* DISTRIBUCIÓN UNIFORME POR EL MAPA */
+  .logo-prime      { top: 22%; left: 12%; max-height: 100px; } 
+  .logo-skydance   { top: 40%; left: 24%; max-height: 100px; } /* Ajustado posición y tamaño para que no se pise */
+  .logo-anima      { top: 68%; left: 16%; max-height: 100px; } 
+  
+  .logo-netflix    { top: 18%; left: 46%; max-height: 100px; } 
+  .logo-frank      { top: 46%; left: 45%; max-height: 100px; } 
+  
+  .logo-dopost     { top: 28%; left: 74%; max-height: 100px; } 
+  .logo-hampa      { top: 52%; left: 64%; max-height: 100px; } 
+  .logo-motion     { top: 64%; left: 84%; max-height: 100px; } 
+  .logo-toneplus   { top: 82%; left: 70%; max-height: 100px; }
 
   /* Grid inferior de ciudades */
   .cities-grid {
@@ -151,15 +163,17 @@
     line-height: 2.2;
     text-transform: uppercase;
   }
-  @media (max-width: 900px) { .cities-grid { grid-template-columns: repeat(3,1fr); } }
+  
+  @media (max-width: 900px) { 
+    .cities-grid { grid-template-columns: repeat(3,1fr); } 
+  }
   @media (max-width: 600px) { 
     .cities-grid { grid-template-columns: repeat(2,1fr); }
-    .map-logo { max-height: 18px; } /* Reducir logos en pantallas pequeñas */
+    .map-logo { max-height: 20px !important; max-width: 55px; }
   }
 </style>
 
 <script>
-  // Script limpio de D3 enfocado exclusivamente en pintar el mapa de fondo de forma impecable
   async function drawMap() {
     const [d3mod, topo] = await Promise.all([
       import('https://cdn.jsdelivr.net/npm/d3@7/+esm'),
@@ -167,7 +181,8 @@
     ]);
 
     const svg = d3mod.select("#world-map");
-    const W = (svg.node() as SVGElement).parentElement!.clientWidth;
+    const rect = (svg.node() as SVGElement).parentElement!.getBoundingClientRect();
+    const W = rect.width;
     const H = Math.round(W * 0.52);
     svg.attr("viewBox", `0 0 ${W} ${H}`).attr("height", H);
 
@@ -176,12 +191,12 @@
       .translate([W / 2, H / 2]);
     const path = d3mod.geoPath().projection(proj);
 
-    const world: any = await d3mod.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
+    const worldUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+    const world: any = await d3mod.json(worldUrl);
     const countries = topo.feature(world, world.objects.countries) as any;
 
     svg.append("rect").attr("width", W).attr("height", H).attr("fill", "#0f0f0f");
     
-    // Pintar los países en un gris elegante muy oscuro para que resalten los logos de arriba
     svg.append("g")
       .selectAll("path")
       .data(countries.features)
