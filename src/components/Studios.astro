@@ -10,24 +10,37 @@
     </div>
 
     <div class="map-wrapper">
+      <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true" focusable="false">
+        <defs>
+          <filter id="gold-tint">
+            <feColorMatrix type="matrix" values="
+              0 0 0 0 0.898
+              0 0 0 0 0.662
+              0 0 0 0 0.231
+              0 0 0 1 0
+            "/>
+          </filter>
+        </defs>
+      </svg>
+
       <svg id="world-map" style="width:100%; display:block;"></svg>
       
       <div class="map-logos">
-        <img src="/logos/prime.png" alt="Prime Video" class="map-logo logo-prime" />
-        <img src="/logos/netflix.png" alt="Netflix" class="map-logo logo-netflix" />
-        <img src="/logos/skydance.png" alt="Skydance Animation" class="map-logo logo-skydance" />
-        
-        <img src="/logos/anima.jpg" alt="Anima Kitchent" class="map-logo logo-blended logo-anima" />
-        <img src="/logos/do.png" alt="DØ Postproduction" class="map-logo logo-blended logo-dopost" />
-        <img src="/logos/frank.jpg" alt="The Frank Barton Company" class="map-logo logo-blended logo-frank" />
-        <img src="/logos/motion.jpg" alt="The Motion Logic Studios" class="map-logo logo-blended logo-motion" />
-        <img src="/logos/hampa.jpg" alt="Hampa Studio" class="map-logo logo-blended logo-hampa" />
-        <img src="/logos/toneplus.jpg" alt="Toneplus Animation" class="map-logo logo-blended logo-toneplus" />
-        <img src="/logos/keytoon.png" alt="Keytoon" class="map-logo logo-blended logo-keytoon" />
-        <img src="/logos/tandem.png" alt="Tandem" class="map-logo logo-blended logo-tandem" />
-        <img src="/logos/water.png" alt="B.Water" class="map-logo logo-blended logo-water" />
-        <img src="/logos/core.png" alt="Core School" class="map-logo logo-blended logo-core" />
-        <img src="/logos/able.png" alt="Able&Baker" class="map-logo logo-blended logo-able" />
+        <img src="/logos/netflix.png" alt="Netflix" class="map-logo logo-dark-bg logo-netflix" />
+        <img src="/logos/skydance.png" alt="Skydance Animation" class="map-logo logo-dark-bg logo-skydance" />
+        <img src="/logos/prime.png" alt="Prime Video" class="map-logo logo-dark-bg logo-prime" />
+        <img src="/logos/do.png" alt="DØ Postproduction" class="map-logo logo-dark-bg logo-dopost" />
+        <img src="/logos/keytoon.png" alt="Keytoon" class="map-logo logo-dark-bg logo-keytoon" />
+        <img src="/logos/water.png" alt="B.Water" class="map-logo logo-dark-bg logo-water" />
+        <img src="/logos/core.png" alt="Core School" class="map-logo logo-dark-bg logo-core" />
+
+        <img src="/logos/anima.png" alt="Anima Kitchent" class="map-logo logo-white-bg logo-anima" />
+        <img src="/logos/frank.png" alt="The Frank Barton Company" class="map-logo logo-white-bg logo-frank" />
+        <img src="/logos/motion.png" alt="The Motion Logic Studios" class="map-logo logo-white-bg logo-motion" />
+        <img src="/logos/hampa.png" alt="Hampa Studio" class="map-logo logo-white-bg logo-hampa" />
+        <img src="/logos/toneplus.png" alt="Toneplus Animation" class="map-logo logo-white-bg logo-toneplus" />
+        <img src="/logos/tandem.png" alt="Tandem" class="map-logo logo-white-bg logo-tandem" />
+        <img src="/logos/able.png" alt="Able&Baker" class="map-logo logo-white-bg logo-able" />
       </div>
     </div>
 
@@ -96,55 +109,64 @@
     width: 100%;
     height: 100%;
     pointer-events: none;
+    isolation: isolate;
   }
 
-  /* TAMAÑO POTENTE UNIFORME */
   .map-logo {
     position: absolute;
     z-index: 10;
     width: auto;
     height: 72px;
     max-width: 190px;
-    opacity: 0.85;
     transition: all 0.3s ease;
     pointer-events: auto;
     object-fit: contain;
   }
 
-  /* Fusión limpia para quitar parches cuadrados claros */
-  .logo-blended {
-    mix-blend-mode: multiply;
-    filter: brightness(1.2);
+  /* 🗺️ LOGOS OSCUROS/TRANSPARENTES: Quitamos fondo negro y teñimos del dorado exacto con el filtro SVG */
+  .logo-dark-bg {
+    mix-blend-mode: screen;
+    filter: grayscale(1) brightness(0.8) url(#gold-tint);
+    opacity: 0.75;
   }
 
+  /* 🗺️ LOGOS BLANCOS: Invertimos para hacer el fondo negro, lo eliminamos con screen y aplicamos el mismo dorado exacto */
+  .logo-white-bg {
+    mix-blend-mode: screen;
+    filter: invert(1) grayscale(1) brightness(0.8) url(#gold-tint);
+    opacity: 0.75;
+  }
+
+  /* Hover unificado: Iluminación limpia al 100% manteniendo la simetría de color */
   .map-logo:hover {
-    opacity: 1;
+    opacity: 1 !important;
     transform: scale(1.05);
   }
+  .logo-dark-bg:hover {
+    filter: grayscale(1) brightness(1.2) url(#gold-tint) !important;
+  }
+  .logo-white-bg:hover {
+    filter: invert(1) grayscale(1) brightness(1.2) url(#gold-tint) !important;
+  }
 
-  /* 🗺️ DISTRIBUCIÓN EVOLUCIONADA SIN SOLAPAMIENTOS 🗺️ */
-  /* BANDA IZQUIERDA (Pacífico e Índico Oeste / Américas) */
-  .logo-prime      { top: 12%; left: 5%; }   /* Extremo superior izquierdo */
-  .logo-skydance   { top: 46%; left: 20%; }  /* Centro de USA */
-  .logo-water      { top: 62%; left: 4%; }   /* Pacífico Sur Central (Espacio enorme libre) */
-  .logo-anima      { top: 76%; left: 16%; }  /* Sudamérica inferior */
-
-  /* BANDA CENTRAL (Atlántico / Europa / África) */
-  .logo-netflix    { top: 8%; left: 46%; }   /* Groenlandia alta (Limpio) */
-  .logo-core       { top: 32%; left: 45%; }  /* Europa / Mediterráneo */
-  .logo-frank      { top: 56%; left: 44%; }  /* África Centro-Sur */
-
-  /* BANDA DERECHA (Asia / Oceanía / Extremos) */
-  .logo-dopost     { top: 22%; left: 74%; }  /* Siberia / Rusia */
-  .logo-hampa      { top: 50%; left: 63%; }  /* Oriente / Índico Norte */
-  .logo-motion     { top: 66%; left: 83%; }  /* Oceanía */
-  .logo-toneplus   { top: 84%; left: 68%; }  /* Índico Sur profundo */
+  /* 🗺️ COORDENADAS DE POSICIONAMIENTO REAJUSTADAS 🗺️ */
+  .logo-prime      { top: 14%; left: 6%; }   
+  .logo-skydance   { top: 46%; left: 20%; }  
+  .logo-water      { top: 64%; left: 4%; }   
   
-  /* AJUSTE BANDA INFERIOR ATLÁNTICO */
-  .logo-keytoon    { top: 82%; left: 5%; }  /* Pacífico Sur extremo */
-  .logo-tandem     { top: 82%; left: 32%; }  /* Atlántico Sur libre */
-  .logo-able     { top: 78%; left: 55%; }  /* Atlántico Sur libre */
-
+  .logo-netflix    { top: 8%; left: 46%; }   
+  .logo-core       { top: 30%; left: 44%; }  
+  .logo-frank      { top: 56%; left: 44%; }  
+  
+  .logo-dopost     { top: 22%; left: 74%; }  
+  .logo-hampa      { top: 52%; left: 62%; }  
+  .logo-motion     { top: 68%; left: 82%; }  
+  .logo-toneplus   { top: 84%; left: 68%; }  
+  
+  .logo-keytoon    { top: 82%; left: 5%; }   
+  .logo-anima      { top: 82%; left: 21%; }  
+  .logo-tandem     { top: 82%; left: 37%; }  
+  .logo-able       { top: 80%; left: 53%; }  
 
   /* Grid inferior de ciudades */
   .cities-grid {
