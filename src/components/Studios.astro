@@ -42,7 +42,7 @@
         <img src="/logos/tandem.png" alt="Tandem" class="map-logo logo-white-bg logo-tandem" />
         <img src="/logos/able.png" alt="Able&Baker" class="map-logo logo-white-bg logo-able" />
         <img src="/logos/apple.png" alt="Apple" class="map-logo logo-white-bg logo-apple" />
-
+        <img src="/logos/gizmo.jpg" alt="Gizmo" class="map-logo logo-white-bg logo-gizmo" />
       </div>
     </div>
 
@@ -68,7 +68,6 @@
         <div class="city-studio">Thelma & Boom, Inc.</div>
         <div class="city-studio">The Motion Logic Studios</div>
         <div class="city-studio">Apple</div>
-
       </div>
       <div class="city-block">
         <div class="city-name">Canarias</div>
@@ -80,6 +79,7 @@
       <div class="city-block">
         <div class="city-name">INTL.</div>
         <div class="city-divider"></div>
+        <div class="city-studio">Gizmo</div>
         <div class="city-studio">Blit Studio</div>
         <div class="city-studio">Non-Fungible Labs</div>
         <div class="city-studio">Hololux VR</div>
@@ -127,21 +127,21 @@
     object-fit: contain;
   }
 
-  /* 🗺️ LOGOS OSCUROS/TRANSPARENTES: Quitamos fondo negro y teñimos del dorado exacto con el filtro SVG */
+  /* 🗺️ LOGOS OSCUROS/TRANSPARENTES */
   .logo-dark-bg {
     mix-blend-mode: screen;
     filter: grayscale(1) brightness(0.8) url(#gold-tint);
     opacity: 0.75;
   }
 
-  /* 🗺️ LOGOS BLANCOS: Invertimos para hacer el fondo negro, lo eliminamos con screen y aplicamos el mismo dorado exacto */
+  /* 🗺️ LOGOS BLANCOS (O JPG CON FONDO BLANCO COMO GIZMO) */
   .logo-white-bg {
     mix-blend-mode: screen;
     filter: invert(1) grayscale(1) brightness(0.8) url(#gold-tint);
     opacity: 0.75;
   }
 
-  /* Hover unificado: Iluminación limpia al 100% manteniendo la simetría de color */
+  /* Hover unificado */
   .map-logo:hover {
     opacity: 1 !important;
     transform: scale(1.05);
@@ -153,7 +153,7 @@
     filter: invert(1) grayscale(1) brightness(1.2) url(#gold-tint) !important;
   }
 
-  /* 🗺️ COORDENADAS DE POSICIONAMIENTO REAJUSTADAS 🗺️ */
+  /* 🗺️ COORDENADAS DE POSICIONAMIENTO 🗺️ */
   .logo-prime      { top: 14%; left: 6%; }   
   .logo-skydance   { top: 46%; left: 20%; }  
   .logo-water      { top: 64%; left: 4%; }   
@@ -167,11 +167,12 @@
   .logo-motion     { top: 68%; left: 82%; }  
   .logo-toneplus   { top: 84%; left: 68%; }  
   
-  .logo-keytoon    { top: 82%; left: 5%; }   
-  .logo-anima      { top: 82%; left: 21%; }  
-  .logo-tandem     { top: 82%; left: 37%; }  
-  .logo-able       { top: 80%; left: 53%; }
-.logo-apple       { top: 10%; left: 25%; }   
+  .logo-keytoon    { top: 82%; left: 2%; }   
+  .logo-anima      { top: 82%; left: 16%; }  
+  .logo-tandem     { top: 82%; left: 30%; }  
+  .logo-able       { top: 82%; left: 44%; }
+  .logo-gizmo      { top: 82%; left: 58%; } /* Ubicación en la barra inferior */
+  .logo-apple      { top: 10%; left: 25%; }   
 
   /* Grid inferior de ciudades */
   .cities-grid {
