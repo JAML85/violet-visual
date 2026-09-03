@@ -41,4 +41,212 @@
         <img src="/logos/toneplus.png" alt="Toneplus Animation" class="map-logo logo-white-bg logo-toneplus" />
         <img src="/logos/tandem.png" alt="Tandem" class="map-logo logo-white-bg logo-tandem" />
         <img src="/logos/able.png" alt="Able&Baker" class="map-logo logo-white-bg logo-able" />
-        <img src="/logos/apple.png" alt="Apple" class="map-logo logo-white-bg logo
+        <img src="/logos/apple.png" alt="Apple" class="map-logo logo-white-bg logo-apple" />
+        <img src="/logos/gizmo.jpg" alt="Gizmo" class="map-logo logo-white-bg logo-gizmo" />
+
+
+      </div>
+    </div>
+
+    <div class="cities-grid">
+      <div class="city-block">
+        <div class="city-name">MADRID</div>
+        <div class="city-divider"></div>
+        <div class="city-studio">Tandem Films</div>
+        <div class="city-studio">DØ Postproduction</div>
+        <div class="city-studio">Able&Baker</div>
+        <div class="city-studio">The Frank Barton Company</div>
+        <div class="city-studio">Skydance Animation</div>
+      </div>
+      <div class="city-block">
+        <div class="city-name">VALENCIA</div>
+        <div class="city-divider"></div>
+        <div class="city-studio">Hampa Studio</div>
+        <div class="city-studio">La Cancan</div>
+      </div>
+      <div class="city-block">
+        <div class="city-name">USA</div>
+        <div class="city-divider"></div>
+        <div class="city-studio">Thelma & Boom, Inc.</div>
+        <div class="city-studio">The Motion Logic Studios</div>
+        <div class="city-studio">Apple</div>
+
+      </div>
+      <div class="city-block">
+        <div class="city-name">Canarias</div>
+        <div class="city-divider"></div>
+        <div class="city-studio">Anima Kitchent</div>
+        <div class="city-studio">B-Water</div>
+        <div class="city-studio">Atlantis</div>
+      </div>
+      <div class="city-block">
+        <div class="city-name">INTL.</div>
+        <div class="city-divider"></div>
+        <div class="city-studio">Blit Studio</div>
+        <div class="city-studio">Non-Fungible Labs</div>
+        <div class="city-studio">Hololux VR</div>
+        <div class="city-studio">Toneplus Animation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .studios-section {
+    padding: 7rem 0;
+    background: #0b0b0b;
+    border-top: 1px solid #1a1a1a;
+  }
+  
+  .map-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    background: #0f0f0f;
+    border: 1px solid #1a1a1a;
+  }
+
+  .map-logos {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    isolation: isolate;
+  }
+
+  .map-logo {
+    position: absolute;
+    z-index: 10;
+    width: auto;
+    height: 72px;
+    max-width: 190px;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+    object-fit: contain;
+  }
+
+  /* 🗺️ LOGOS OSCUROS/TRANSPARENTES: Quitamos fondo negro y teñimos del dorado exacto con el filtro SVG */
+  .logo-dark-bg {
+    mix-blend-mode: screen;
+    filter: grayscale(1) brightness(0.8) url(#gold-tint);
+    opacity: 0.75;
+  }
+
+  /* 🗺️ LOGOS BLANCOS: Invertimos para hacer el fondo negro, lo eliminamos con screen y aplicamos el mismo dorado exacto */
+  .logo-white-bg {
+    mix-blend-mode: screen;
+    filter: invert(1) grayscale(1) brightness(0.8) url(#gold-tint);
+    opacity: 0.75;
+  }
+
+  /* Hover unificado: Iluminación limpia al 100% manteniendo la simetría de color */
+  .map-logo:hover {
+    opacity: 1 !important;
+    transform: scale(1.05);
+  }
+  .logo-dark-bg:hover {
+    filter: grayscale(1) brightness(1.2) url(#gold-tint) !important;
+  }
+  .logo-white-bg:hover {
+    filter: invert(1) grayscale(1) brightness(1.2) url(#gold-tint) !important;
+  }
+
+  /* 🗺️ COORDENADAS DE POSICIONAMIENTO REAJUSTADAS 🗺️ */
+  .logo-prime      { top: 14%; left: 6%; }   
+  .logo-skydance   { top: 46%; left: 20%; }  
+  .logo-water      { top: 64%; left: 4%; }   
+  
+  .logo-netflix    { top: 8%; left: 46%; }   
+  .logo-core       { top: 30%; left: 44%; }  
+  .logo-frank      { top: 56%; left: 44%; }  
+  
+  .logo-dopost     { top: 22%; left: 74%; }  
+  .logo-hampa      { top: 52%; left: 62%; }  
+  .logo-motion     { top: 68%; left: 82%; }  
+  .logo-toneplus   { top: 84%; left: 68%; }  
+  
+  .logo-keytoon    { top: 82%; left: 5%; }   
+  .logo-anima      { top: 82%; left: 21%; }  
+  .logo-tandem     { top: 82%; left: 37%; }  
+  .logo-able       { top: 80%; left: 53%; }
+  .logo-apple       { top: 10%; left: 25%; }   
+
+  /* Grid inferior de ciudades */
+  .cities-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+    border-top: 1px solid #1a1a1a;
+    padding-top: 3rem;
+  }
+  .city-block { text-align: center; }
+  .city-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    color: #e5a93b;
+    margin-bottom: 0.5rem;
+  }
+  .city-divider {
+    width: 24px; height: 2px;
+    background: #e5a93b;
+    margin: 0 auto 1rem;
+  }
+  .city-studio {
+    font-size: 0.65rem;
+    color: #888;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    line-height: 2.2;
+    text-transform: uppercase;
+  }
+  
+  @media (max-width: 900px) { 
+    .cities-grid { grid-template-columns: repeat(3,1fr); } 
+  }
+  @media (max-width: 600px) { 
+    .cities-grid { grid-template-columns: repeat(2,1fr); }
+    .map-logo { height: 28px !important; max-width: 80px; }
+  }
+</style>
+
+<script>
+  async function drawMap() {
+    const [d3mod, topo] = await Promise.all([
+      import('https://cdn.jsdelivr.net/npm/d3@7/+esm'),
+      import('https://cdn.jsdelivr.net/npm/topojson-client@3/+esm'),
+    ]);
+
+    const svg = d3mod.select("#world-map");
+    const rect = (svg.node() as SVGElement).parentElement!.getBoundingClientRect();
+    const W = rect.width;
+    const H = Math.round(W * 0.52);
+    svg.attr("viewBox", `0 0 ${W} ${H}`).attr("height", H);
+
+    const proj = d3mod.geoNaturalEarth1()
+      .scale(W / 6.1)
+      .translate([W / 2, H / 2]);
+    const path = d3mod.geoPath().projection(proj);
+
+    const worldUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+    const world: any = await d3mod.json(worldUrl);
+    const countries = topo.feature(world, world.objects.countries) as any;
+
+    svg.append("rect").attr("width", W).attr("height", H).attr("fill", "#0f0f0f");
+    
+    svg.append("g")
+      .selectAll("path")
+      .data(countries.features)
+      .join("path")
+      .attr("d", path)
+      .attr("fill", "#1e1e1e")
+      .attr("stroke", "#121212")
+      .attr("stroke-width", 0.6);
+  }
+
+  drawMap();
+</script>
