@@ -17,11 +17,11 @@ const slides = [
   },
   {
     image: '/portfolio/sky.jpg',
-    project: 'Sky Red 3',
-    studio: 'The Frank barton Company',
+    project: 'Sky Rojo',
+    studio: 'DØ Postproduction',
   },
 {
-    image: '/portfolio/superthingsPoster.png',
+    image: '/portfolio/superthings.png',
     project: 'Superthings',
     studio: 'Keytoon',
   },
@@ -35,7 +35,7 @@ const slides = [
   <!-- CARRUSEL DE FONDO -->
   <div class="carousel" id="carousel" aria-hidden="true">
     {slides.map((slide, i) => (
-      <div class={`slide ${i === 0 ? 'active' : ''}`} style={`background-image: url('${slide.image}')`}></div>
+      <div class={`slide ${i === 0 ? 'active' : ''}`} data-project={slide.project} data-studio={slide.studio} style={`background-image: url('${slide.image}')`}></div>
     ))}
     <!-- Overlay oscuro encima de las imágenes para que el texto sea legible -->
     <div class="carousel-overlay"></div>
@@ -55,9 +55,11 @@ const slides = [
   <!-- DOTS -->
   <div class="dots" id="dots">
     {slides.map((_, i) => (
-      <button class={`dot ${i === 0 ? 'active' : ''}`} data-index={i} aria-label={`Slide ${i + 1}`}></button>
+      <button class={`dot ${i === 0 ? 'active' : ''}`} data-index={i} aria-pressed={i === 0} aria-label={`Slide ${i + 1}`}></button>
     ))}
   </div>
+
+  <button class="carousel-toggle" id="carousel-toggle" aria-pressed="false">Pause slideshow</button>
 
   <!-- CONTENIDO PRINCIPAL (encima del carrusel) -->
   <div class="hero-content">
@@ -363,55 +365,72 @@ const slides = [
     0%, 100% { opacity: 0.3; }
     50% { opacity: 1; }
   }
+
+  .hero { min-height: 740px; }
+  .carousel-toggle { position: absolute; right: 1.5rem; bottom: 1.5rem; z-index: 10; background: #101010aa; border: 1px solid #777; color: #ddd; padding: .6rem .8rem; font: inherit; font-size: .65rem; cursor: pointer; }
+  .dot { width: 28px; height: 28px; background: radial-gradient(circle, #888 3px, transparent 4px); }
+  .dot.active { background: radial-gradient(circle, var(--gold) 4px, transparent 5px); transform: none; }
+  .dots { gap: .2rem; bottom: 2.8rem; }
+  .slide-info { max-width: calc(100% - 3rem); text-align: center; }
+  @media (max-width: 600px) {
+    .hero { height: auto; min-height: 690px; padding: 30px 0 150px; }
+    .hero-content { padding: 1.5rem; width: 100%; }
+    .hero-name { font-size: clamp(3.2rem, 15vw, 5.5rem); letter-spacing: 3px; }
+    .eyebrow { font-size: .6rem; letter-spacing: 2px; }
+    .hero-role { font-size: .8rem; letter-spacing: 2px; }
+    .hero-tagline { font-size: .8rem; margin-bottom: 1.5rem; }
+    .hero-tagline br { display: none; }
+    .platforms { font-size: .55rem; letter-spacing: 1px; gap: .5rem; margin-bottom: 1.5rem; }
+    .hero-cta { flex-wrap: wrap; gap: .6rem; }
+    .btn-outline, .btn-ghost { padding: .85rem 1rem; font-size: .65rem; letter-spacing: 1px; }
+    .arrow { top: auto; bottom: 65px; padding: .5rem; font-size: 2.5rem; transform: none; }
+    .arrow-prev { left: .25rem; } .arrow-next { right: .25rem; }
+    .slide-info { bottom: 90px; width: calc(100% - 5rem); flex-direction: column; gap: .25rem; }
+    .slide-project, .slide-studio { font-size: .65rem; letter-spacing: 1px; }
+    .slide-sep, .scroll-hint { display: none; }
+    .dots { bottom: 48px; }
+    .carousel-toggle { bottom: 8px; right: 50%; transform: translateX(50%); }
+  }
 </style>
 
 <script>
-  const slides = document.querySelectorAll<HTMLElement>('.slide');
-  const dots = document.querySelectorAll<HTMLElement>('.dot');
-  const projectEl = document.getElementById('slide-project');
-  const studioEl = document.getElementById('slide-studio');
-
-  const projects = [
-    { project: 'Luck', studio: 'Skydance Animation' },
-    { project: 'Angry Birds The journey', studio: 'Ánima Kitchent' },
-    { project: 'Audi presents a Short Letter', studio: 'The Frank Barton Company' },
-    { project: 'Sky Red 3', studio: 'Do Postproduction' },
-  ];
-
+  const slides = [...document.querySelectorAll<HTMLElement>('.slide')];
+  const dots = [...document.querySelectorAll<HTMLElement>('.dot')];
+  const hero = document.querySelector<HTMLElement>('.hero');
+  const toggle = document.querySelector<HTMLButtonElement>('#carousel-toggle');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let current = 0;
-  let timer: ReturnType<typeof setInterval>;
-
+  let paused = reducedMotion.matches;
+  let timer: ReturnType<typeof setInterval> | undefined;
   function goTo(index: number) {
-    slides[current].classList.remove('active');
-    dots[current].classList.remove('active');
     current = (index + slides.length) % slides.length;
-    slides[current].classList.add('active');
-    dots[current].classList.add('active');
-    if (projectEl) projectEl.textContent = projects[current].project;
-    if (studioEl) studioEl.textContent = projects[current].studio;
-  }
-
-  function next() { goTo(current + 1); }
-  function prev() { goTo(current - 1); }
-
-  function startTimer() {
-    timer = setInterval(next, 5000);
-  }
-  function resetTimer() {
-    clearInterval(timer);
-    startTimer();
-  }
-
-  document.getElementById('next')?.addEventListener('click', () => { next(); resetTimer(); });
-  document.getElementById('prev')?.addEventListener('click', () => { prev(); resetTimer(); });
-  dots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      goTo(Number(dot.dataset.index));
-      resetTimer();
+    slides.forEach((slide, i) => slide.classList.toggle('active', i === current));
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === current);
+      dot.setAttribute('aria-pressed', String(i === current));
     });
-  });
-
-  startTimer();
+    const project = document.getElementById('slide-project');
+    const studio = document.getElementById('slide-studio');
+    if (project) project.textContent = slides[current].dataset.project ?? '';
+    if (studio) studio.textContent = slides[current].dataset.studio ?? '';
+  }
+  function restart() {
+    clearInterval(timer);
+    if (!paused && !document.hidden && !hero?.matches(':focus-within')) timer = setInterval(() => goTo(current + 1), 5000);
+    if (toggle) {
+      toggle.textContent = paused ? 'Play slideshow' : 'Pause slideshow';
+      toggle.setAttribute('aria-pressed', String(paused));
+    }
+  }
+  document.getElementById('next')?.addEventListener('click', () => { goTo(current + 1); restart(); });
+  document.getElementById('prev')?.addEventListener('click', () => { goTo(current - 1); restart(); });
+  dots.forEach((dot, index) => dot.addEventListener('click', () => { goTo(index); restart(); }));
+  toggle?.addEventListener('click', () => { paused = !paused; restart(); });
+  hero?.addEventListener('focusin', () => clearInterval(timer));
+  hero?.addEventListener('focusout', () => requestAnimationFrame(restart));
+  document.addEventListener('visibilitychange', restart);
+  reducedMotion.addEventListener('change', event => { paused = event.matches; restart(); });
+  if (slides.length) restart();
 </script>
 
 

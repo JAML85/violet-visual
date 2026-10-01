@@ -363,4 +363,16 @@ const shows = [
   @media (max-width: 1100px) {
     .shows-grid { grid-template-columns: repeat(4, 1fr); }
   }
-  @
+  @media (max-width: 800px) { .shows-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 600px) {
+    .shows-section { padding: 4rem 0; }
+    .shows-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem .75rem; }
+    .card-info { padding: .8rem .5rem; }
+    .card-info h3 { font-size: .8rem; }
+    .studio { font-size: .7rem; }
+    .role { font-size: .65rem; }
+    .poster-tag { font-size: .48rem; letter-spacing: 1px; }
+    .imdb-cta { gap: .7rem; letter-spacing: 1px; }
+    .line-deco { width: 20px; }
+  }
+</style>
