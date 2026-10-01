@@ -71,7 +71,7 @@ const projects = [
 <Layout title="Personal — Juan Manchado">
   <Header />
 
-  <main class="pro-main" id="main-content">
+  <main class="pro-main">
     <div class="page-header">
       <div class="container">
         <a href="/#portfolio" class="back-link">
@@ -87,7 +87,7 @@ const projects = [
 
     <div class="container projects-list">
       {projects.map((project, pi) => (
-        <article class="project-block" id={`project-${pi}`}>
+        <article class="project-block">
           <div class="project-header">
             <div class="project-meta">
               <h2 class="project-title">{project.title}</h2>
