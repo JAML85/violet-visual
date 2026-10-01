@@ -45,6 +45,8 @@ const shows = [
     image: '/portfolio/skyrojoPoster.jpg',
     platform: 'NETFLIX',
     videoUrl: 'https://www.youtube.com/watch?v=VX_KygyV56o',
+    workUrl: 'https://www.youtube.com/watch?v=29ZZUrBpc8M',
+    workDescription: 'building modeling and surfacing',
   },
 {
     title: 'Sin huellas',
@@ -57,6 +59,8 @@ const shows = [
     image: '/portfolio/sinhuellasPoster.jpg',
     platform: 'PRIME VIDEO',
     videoUrl: 'https://www.youtube.com/watch?v=XVTm3Zrcs4M', 
+    workUrl: 'https://www.youtube.com/watch?v=ahjMdJqMYaM',
+    workDescription: 'car glass and side mirror',
   },
 
  {
@@ -150,15 +154,17 @@ const shows = [
 
     <div class="shows-grid">
       {shows.map((show) => {
-        // Si el show tiene configurado un videoUrl, usamos enlace <a>, si no, un <article> estático
-        const CardTag = show.videoUrl ? 'a' : 'article';
+        // Prioritize contribution clips when available, retaining the trailer source.
+        const videoUrl = 'workUrl' in show ? show.workUrl : show.videoUrl;
+        const CardTag = videoUrl ? 'a' : 'article';
         
         return (
           <CardTag 
             class="show-card" 
-            href={show.videoUrl || undefined}
-            target={show.videoUrl ? "_blank" : undefined}
-            rel={show.videoUrl ? "noopener noreferrer" : undefined}
+            href={videoUrl || undefined}
+            target={videoUrl ? "_blank" : undefined}
+            rel={videoUrl ? "noopener noreferrer" : undefined}
+            aria-label={'workDescription' in show ? `Watch ${show.title}: ${show.workDescription}` : undefined}
             style={{
               '--card-color': show.color,
               '--card-img': show.image ? `url(${show.image})` : 'none'

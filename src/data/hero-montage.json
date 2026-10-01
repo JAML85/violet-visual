@@ -1,142 +1,211 @@
 [
   {
-    "until": 3.459,
+    "until": 2.0,
     "project": "Lady Everest",
     "studio": "Pixelodeon",
     "role": "Senior Set Modeling & Surfacing Artist",
     "source": "1117020973",
-    "start": 60.25,
-    "duration": 3.459,
-    "sourceDuration": 3.5
+    "start": 60.15,
+    "sourceDuration": 1.75,
+    "duration": 2.0,
+    "shot": "Suspension bridge"
   },
   {
-    "until": 5.918,
+    "until": 4.0,
     "project": "Lady Everest",
     "studio": "Pixelodeon",
     "role": "Senior Set Modeling & Surfacing Artist",
     "source": "1117020973",
-    "start": 67.25,
-    "duration": 2.459,
-    "sourceDuration": 2.5
+    "start": 62.15,
+    "sourceDuration": 1.8,
+    "duration": 2.0,
+    "shot": "Rocky valley"
   },
   {
-    "until": 8.877,
+    "until": 5.75,
+    "project": "Lady Everest",
+    "studio": "Pixelodeon",
+    "role": "Senior Set Modeling & Surfacing Artist",
+    "source": "1117020973",
+    "start": 36.55,
+    "sourceDuration": 1.25,
+    "duration": 1.75,
+    "shot": "Rock climbing terrain"
+  },
+  {
+    "until": 8.75,
     "project": "Angry Birds Journey",
     "studio": "Able&Baker",
     "role": "Environment / Sets & Props Modeler",
     "source": "736806656",
     "start": 1,
-    "duration": 2.959,
-    "sourceDuration": 3
+    "sourceDuration": 3,
+    "duration": 3.0,
+    "shot": "Island and foliage"
   },
   {
-    "until": 11.836,
+    "until": 11.75,
     "project": "Angry Birds Journey",
     "studio": "Able&Baker",
     "role": "Environment / Sets & Props Modeler",
     "source": "736806656",
     "start": 11,
-    "duration": 2.959,
-    "sourceDuration": 3
+    "sourceDuration": 3,
+    "duration": 3.0,
+    "shot": "Cave and set dressing"
   },
   {
-    "until": 12.795,
+    "until": 12.75,
     "project": "Angry Birds Journey",
     "studio": "Able&Baker",
     "role": "Environment / Sets & Props Modeler",
     "source": "736806656",
     "start": 19,
-    "duration": 0.959,
-    "sourceDuration": 1
+    "sourceDuration": 1,
+    "duration": 1.0,
+    "shot": "Egg prop"
   },
   {
-    "until": 14.754,
+    "until": 14.75,
     "project": "SuperThings",
     "studio": "Tandem Films · Keytoon Studios",
     "role": "Senior Environment / Sets & Props Modeler",
     "source": "NmbSKt5qXlc",
-    "start": 62,
-    "duration": 1.959,
-    "sourceDuration": 2
+    "start": 102.45,
+    "sourceDuration": 1.3,
+    "duration": 2.0,
+    "shot": "Machine in the workshop"
   },
   {
-    "until": 16.713,
+    "until": 16.5,
     "project": "SuperThings",
     "studio": "Tandem Films · Keytoon Studios",
     "role": "Senior Environment / Sets & Props Modeler",
     "source": "NmbSKt5qXlc",
-    "start": 102,
-    "duration": 1.959,
-    "sourceDuration": 2
+    "start": 113.25,
+    "sourceDuration": 1.2,
+    "duration": 1.75,
+    "shot": "Robotic dinosaur and city"
   },
   {
-    "until": 18.172,
+    "until": 18.5,
     "project": "Luck",
     "studio": "Skydance Animation",
     "role": "Environment / Sets & Props Surfacing",
     "source": "xSG5UX0EQVg",
-    "start": 91.25,
-    "duration": 1.459,
-    "sourceDuration": 1.5
+    "start": 78.85,
+    "sourceDuration": 1.7,
+    "duration": 2.0,
+    "shot": "Land of Luck city"
   },
   {
-    "until": 20.631,
+    "until": 20.5,
     "project": "Luck",
     "studio": "Skydance Animation",
     "role": "Environment / Sets & Props Surfacing",
     "source": "xSG5UX0EQVg",
-    "start": 106,
-    "duration": 2.459,
-    "sourceDuration": 2.5
+    "start": 96.15,
+    "sourceDuration": 1.6,
+    "duration": 2.0,
+    "shot": "Dragon office"
   },
   {
-    "until": 23.09,
+    "until": 21.75,
+    "project": "Luck",
+    "studio": "Skydance Animation",
+    "role": "Environment / Sets & Props Surfacing",
+    "source": "xSG5UX0EQVg",
+    "start": 114.2,
+    "sourceDuration": 0.7,
+    "duration": 1.25,
+    "shot": "Scooter and golden structure"
+  },
+  {
+    "until": 23.5,
+    "project": "Luck",
+    "studio": "Skydance Animation",
+    "role": "Environment / Sets & Props Surfacing",
+    "source": "xSG5UX0EQVg",
+    "start": 118.95,
+    "sourceDuration": 0.85,
+    "duration": 1.75,
+    "shot": "Purple room and scooter"
+  },
+  {
+    "until": 26.0,
     "project": "Paris & Pups",
     "studio": "Hampa Studio",
     "role": "Environment / Sets & Props Surfacing",
     "source": "Edh_cFb9fig",
     "start": 4.5,
-    "duration": 2.459,
-    "sourceDuration": 2.5
+    "sourceDuration": 2.5,
+    "duration": 2.5,
+    "shot": "Garden set"
   },
   {
-    "until": 24.549,
+    "until": 27.5,
     "project": "Paris & Pups",
     "studio": "Hampa Studio",
     "role": "Environment / Sets & Props Surfacing",
     "source": "Edh_cFb9fig",
     "start": 7,
-    "duration": 1.459,
-    "sourceDuration": 1.5
+    "sourceDuration": 1.5,
+    "duration": 1.5,
+    "shot": "Interior set"
   },
   {
-    "until": 27.008,
+    "until": 30.0,
     "project": "Audi — A Shorter Letter",
     "studio": "The Frank Barton Company",
     "role": "Props Modeler",
     "source": "5DhV4ZTJoxE",
     "start": 72.5,
-    "duration": 2.459,
-    "sourceDuration": 2.5
+    "sourceDuration": 2.5,
+    "duration": 2.5,
+    "shot": "Workshop props"
   },
   {
-    "until": 28.467,
+    "until": 31.0,
     "project": "Sky Rojo",
     "studio": "DØ Postproduction",
-    "role": "Environment / Sets & Props Modeler",
-    "source": "VX_KygyV56o",
-    "start": 27,
-    "duration": 1.459,
-    "sourceDuration": 1.5
+    "role": "Building Modeling & Surfacing",
+    "source": "29ZZUrBpc8M",
+    "start": 0,
+    "sourceDuration": 0.9,
+    "duration": 1.0,
+    "shot": "Building facade and explosion"
   },
   {
-    "until": 29.926,
+    "until": 34.0,
+    "project": "Sky Rojo",
+    "studio": "DØ Postproduction",
+    "role": "Building Modeling & Surfacing",
+    "source": "29ZZUrBpc8M",
+    "start": 3,
+    "sourceDuration": 3,
+    "duration": 3.0,
+    "shot": "Modeled building in the explosion"
+  },
+  {
+    "until": 36.5,
+    "project": "Sin huellas",
+    "studio": "DØ Postproduction",
+    "role": "Environment / Sets & Props Modeler",
+    "source": "ahjMdJqMYaM",
+    "start": 2.05,
+    "sourceDuration": 1.3,
+    "duration": 2.5,
+    "shot": "Car glass and side mirror"
+  },
+  {
+    "until": 39.0,
     "project": "Lady Everest",
     "studio": "Pixelodeon",
     "role": "Senior Set Modeling & Surfacing Artist",
     "source": "1117020973",
-    "start": 72.5,
-    "duration": 1.459,
-    "sourceDuration": 1.5
+    "start": 67.2,
+    "sourceDuration": 2.3,
+    "duration": 2.5,
+    "shot": "Glacier landscape"
   }
 ]
