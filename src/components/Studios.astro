@@ -23,28 +23,28 @@
         </defs>
       </svg>
 
-      <svg id="world-map" style="width:100%; display:block;"></svg>
+      <svg id="world-map" aria-hidden="true" focusable="false" viewBox="0 0 1000 520" preserveAspectRatio="xMidYMid slice"></svg>
       
       <div class="map-logos">
-        <img src="/logos/netflix.png" alt="Netflix" class="map-logo logo-dark-bg logo-netflix" />
-        <img src="/logos/skydance.png" alt="Skydance Animation" class="map-logo logo-dark-bg logo-skydance" />
-        <img src="/logos/prime.png" alt="Prime Video" class="map-logo logo-dark-bg logo-prime" />
-        <img src="/logos/do.png" alt="DØ Postproduction" class="map-logo logo-dark-bg logo-dopost" />
-        <img src="/logos/keytoon.png" alt="Keytoon" class="map-logo logo-dark-bg logo-keytoon" />
-        <img src="/logos/water.png" alt="B.Water" class="map-logo logo-dark-bg logo-water" />
-        <img src="/logos/core.png" alt="Core School" class="map-logo logo-dark-bg logo-core" />
+        <img src="/logos/netflix.png" alt="Netflix" class="map-logo logo-dark-bg logo-netflix" loading="lazy" decoding="async" />
+        <img src="/logos/skydance.png" alt="Skydance Animation" class="map-logo logo-dark-bg logo-skydance" loading="lazy" decoding="async" />
+        <img src="/logos/prime.png" alt="Prime Video" class="map-logo logo-dark-bg logo-prime" loading="lazy" decoding="async" />
+        <img src="/logos/do.png" alt="DØ Postproduction" class="map-logo logo-dark-bg logo-dopost" loading="lazy" decoding="async" />
+        <img src="/logos/keytoon.png" alt="Keytoon" class="map-logo logo-dark-bg logo-keytoon" loading="lazy" decoding="async" />
+        <img src="/logos/water.png" alt="B.Water" class="map-logo logo-dark-bg logo-water" loading="lazy" decoding="async" />
+        <img src="/logos/core.png" alt="Core School" class="map-logo logo-dark-bg logo-core" loading="lazy" decoding="async" />
 
-        <img src="/logos/anima.png" alt="Anima Kitchent" class="map-logo logo-white-bg logo-anima" />
-        <img src="/logos/frank.png" alt="The Frank Barton Company" class="map-logo logo-white-bg logo-frank" />
-        <img src="/logos/motion.png" alt="The Motion Logic Studios" class="map-logo logo-white-bg logo-motion" />
-        <img src="/logos/hampa.png" alt="Hampa Studio" class="map-logo logo-white-bg logo-hampa" />
-        <img src="/logos/toneplus.png" alt="Toneplus Animation" class="map-logo logo-white-bg logo-toneplus" />
-        <img src="/logos/tandem.png" alt="Tandem" class="map-logo logo-white-bg logo-tandem" />
-        <img src="/logos/able.png" alt="Able&Baker" class="map-logo logo-white-bg logo-able" />
-        <img src="/logos/apple.png" alt="Apple" class="map-logo logo-white-bg logo-apple" />
+        <img src="/logos/anima.png" alt="Anima Kitchent" class="map-logo logo-white-bg logo-anima" loading="lazy" decoding="async" />
+        <img src="/logos/frank.png" alt="The Frank Barton Company" class="map-logo logo-white-bg logo-frank" loading="lazy" decoding="async" />
+        <img src="/logos/motion.png" alt="The Motion Logic Studios" class="map-logo logo-white-bg logo-motion" loading="lazy" decoding="async" />
+        <img src="/logos/hampa.png" alt="Hampa Studio" class="map-logo logo-white-bg logo-hampa" loading="lazy" decoding="async" />
+        <img src="/logos/toneplus.png" alt="Toneplus Animation" class="map-logo logo-white-bg logo-toneplus" loading="lazy" decoding="async" />
+        <img src="/logos/tandem.png" alt="Tandem" class="map-logo logo-white-bg logo-tandem" loading="lazy" decoding="async" />
+        <img src="/logos/able.png" alt="Able&Baker" class="map-logo logo-white-bg logo-able" loading="lazy" decoding="async" />
+        <img src="/logos/apple.png" alt="Apple" class="map-logo logo-white-bg logo-apple" loading="lazy" decoding="async" />
         
         <!-- NUEVO LOGO GIZMO (Asegúrate de que la extensión del archivo coincida: .png, .svg, .jpg, etc.) -->
-        <img src="/logos/gizmo.png" alt="Gizmo" class="map-logo logo-white-bg logo-gizmo" />
+        <img src="/logos/gizmo.png" alt="Gizmo" class="map-logo logo-white-bg logo-gizmo" loading="lazy" decoding="async" />
 
       </div>
     </div>
@@ -110,25 +110,31 @@
     border: 1px solid #1a1a1a;
   }
 
-  .map-logos {
+  #world-map {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
+    opacity: .65;
+  }
+  .map-logos {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: center;
+    justify-items: center;
+    gap: 2.5rem 2rem;
+    padding: 3rem 2rem;
     isolation: isolate;
   }
-
   .map-logo {
-    position: absolute;
-    z-index: 10;
-    width: auto;
+    position: relative;
+    width: 100%;
+    max-width: 160px;
     height: 72px;
-    max-width: 190px;
-    transition: all 0.3s ease;
-    pointer-events: auto;
     object-fit: contain;
+    transition: opacity .3s ease, transform .3s ease;
   }
 
   /* 🗺️ LOGOS OSCUROS/TRANSPARENTES: Quitamos fondo negro y teñimos del dorado exacto con el filtro SVG */
@@ -157,29 +163,6 @@
     filter: invert(1) grayscale(1) brightness(1.2) url(#gold-tint) !important;
   }
 
-  /* 🗺️ COORDENADAS DE POSICIONAMIENTO REAJUSTADAS 🗺️ */
-  .logo-prime      { top: 14%; left: 6%; }   
-  .logo-skydance   { top: 46%; left: 20%; }  
-  .logo-water      { top: 64%; left: 4%; }   
-  
-  .logo-netflix    { top: 8%; left: 46%; }   
-  .logo-core       { top: 30%; left: 44%; }  
-  .logo-frank      { top: 56%; left: 44%; }  
-  
-  .logo-dopost     { top: 22%; left: 74%; }  
-  .logo-hampa      { top: 52%; left: 62%; }  
-  .logo-motion     { top: 68%; left: 82%; }  
-  .logo-toneplus   { top: 84%; left: 68%; }  
-  
-  .logo-keytoon    { top: 82%; left: 5%; }   
-  .logo-anima      { top: 82%; left: 21%; }  
-  .logo-tandem     { top: 82%; left: 37%; }  
-  .logo-able       { top: 80%; left: 53%; }
-  .logo-apple      { top: 10%; left: 25%; }   
-  
-  /* NUEVA POSICIÓN PARA GIZMO (Ajusta los porcentajes según la zona del mapa donde quieras ubicarlo) */
-  .logo-gizmo      { top: 40%; left: 78%; } 
-
   /* Grid inferior de ciudades */
   .cities-grid {
     display: grid;
@@ -203,7 +186,7 @@
   }
   .city-studio {
     font-size: 0.65rem;
-    color: #888;
+    color: var(--muted);
     font-weight: 600;
     letter-spacing: 0.5px;
     line-height: 2.2;
@@ -215,7 +198,8 @@
   }
   @media (max-width: 600px) { 
     .cities-grid { grid-template-columns: repeat(2,1fr); }
-    .map-logo { height: 28px !important; max-width: 80px; }
+    .map-logos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem 1.25rem; padding: 2rem 1.25rem; }
+    .map-logo { height: 56px; max-width: 125px; }
   }
 </style>
 
@@ -227,10 +211,9 @@
     ]);
 
     const svg = d3mod.select("#world-map");
-    const rect = (svg.node() as SVGElement).parentElement!.getBoundingClientRect();
-    const W = rect.width;
-    const H = Math.round(W * 0.52);
-    svg.attr("viewBox", `0 0 ${W} ${H}`).attr("height", H);
+    const W = 1000;
+    const H = 520;
+    svg.attr("viewBox", `0 0 ${W} ${H}`);
 
     const proj = d3mod.geoNaturalEarth1()
       .scale(W / 6.1)
@@ -253,5 +236,6 @@
       .attr("stroke-width", 0.6);
   }
 
-  drawMap();
+  // Logos remain fully visible if the optional decorative map cannot load.
+  drawMap().catch(() => {});
 </script>

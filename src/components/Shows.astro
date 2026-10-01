@@ -2,10 +2,10 @@
 const shows = [
   {
     title: 'SuperThings: Rivals of Kaboom — The Movie',
-    studio: 'Tandem Films ·Keytoon Studios',
+    studio: 'Tandem Films · Keytoon Studios',
     type: 'Animation Feature Film',
     year: '2026',
-    role: 'Senior Environment/Sets&Props Modeler',
+    role: 'Senior Environment / Sets & Props Modeler',
     tag: 'FEATURE FILM',
     color: '#3b7ce5',
     image: '/portfolio/superthingsPoster.jpg',
@@ -16,7 +16,7 @@ const shows = [
     studio: 'Skydance Animation',
     type: 'Animation Feature Film',
     year: '2022',
-    role: 'Environment/Sets&Props Surfacing',
+    role: 'Environment / Sets & Props Surfacing',
     tag: 'APPLE TV+',
     color: '#3be5a8',
     image: '/portfolio/luckPoster.jpg',
@@ -28,7 +28,7 @@ const shows = [
     studio: 'Able&Baker',
     type: 'Cinematic Videogame',
     year: '2022',
-    role: 'Environment/Sets&Props Modeler',
+    role: 'Environment / Sets & Props Modeler',
     tag: 'VIDEOGAME',
     color: '#e5893b',
     image: '/portfolio/angrybirdsPoster.jpg',
@@ -39,7 +39,7 @@ const shows = [
     studio: 'DØ Postproduction',
     type: 'VFX — TV Series',
     year: '2022',
-    role: 'Environment/Sets&Props Modeler',
+    role: 'Environment / Sets & Props Modeler',
     tag: 'NETFLIX',
     color: '#e53b3b',
     image: '/portfolio/skyrojoPoster.jpg',
@@ -48,10 +48,10 @@ const shows = [
   },
 {
     title: 'Sin huellas',
-    studio: 'Do Postproduction',
+    studio: 'DØ Postproduction',
     type: 'VFX — TV Series',
     year: '2022',
-    role: 'Environment/Sets&Props Modeler',
+    role: 'Environment / Sets & Props Modeler',
     tag: 'PRIME VIDEO',
     color: '#3be5a8',
     image: '/portfolio/sinhuellasPoster.jpg',
@@ -60,11 +60,11 @@ const shows = [
   },
 
  {
-    title: 'Lady everest',
+    title: 'Lady Everest',
     studio: 'Pixelodeon 3d',
     type: 'Documentary',
     year: '2026',
-    role: 'Senior Environment/Sets&Props Modeler',
+    role: 'Senior Environment / Sets & Props Modeler',
     tag: 'DOCUMENTARY',
     color: '#8b3be5',
     image: '/portfolio/ladyeverestPoster.jpg',
@@ -72,7 +72,7 @@ const shows = [
   },
 
 {
-    title: 'Audi presents a Shorter letter',
+    title: 'Audi — A Shorter Letter',
     studio: 'The Frank Barton Company',
     type: 'Short Animation',
     year: '2022',
@@ -89,7 +89,7 @@ const shows = [
     studio: 'Salsero Studio',
     type: 'Animated Short Film',
     year: '2022',
-    role: 'Environment/Sets&Props Modeler',
+    role: 'Environment / Sets & Props Modeler',
     tag: 'FEATURE FILM',
     color: '#3be5a8',
     image: '/portfolio/morganPoster.jpg',
@@ -101,7 +101,7 @@ const shows = [
     studio: '',
     type: 'Short Film',
     year: '2022',
-    role: 'Environment/Sets&Props Modeler',
+    role: 'Environment / Sets & Props Modeler',
     tag: 'SHORT FILM',
     color: '#3be5a8',
     image: '/portfolio/exploradoresPoster.jpg',
@@ -114,7 +114,7 @@ const shows = [
     studio: '',
     type: 'Animation Feature Film',
     year: '2022',
-    role: 'Environment/Sets&Props Modeler',
+    role: 'Environment / Sets & Props Modeler',
     tag: 'FEATURE FILM',
     color: '#3be5a8',
     image: '/portfolio/unusualPoster.jpg',
@@ -123,12 +123,12 @@ const shows = [
   },
 
 {
-    title: 'Paris&Pups season 1',
+    title: 'Paris & Pups — Season 1',
     studio: 'Hampa Studio',
-    type: 'Serie TV',
+    type: 'TV Series',
     year: '2025',
-    role: 'Environment/Sets&Props Surfacing',
-    tag: 'Serie TV',
+    role: 'Environment / Sets & Props Surfacing',
+    tag: 'TV Series',
     color: '#3be5a8',
     image: '/portfolio/parisPoster.jpg',
     platform: '',
@@ -173,7 +173,7 @@ const shows = [
             </div>
             <div class="card-info">
               <h3>{show.title}</h3>
-              <p class="studio">{show.studio} — {show.type}</p>
+              <p class="studio">{[show.studio, show.type].filter(Boolean).join(' — ')}</p>
               <span class="role">{show.role}</span>
             </div>
           </CardTag>
@@ -182,7 +182,7 @@ const shows = [
     </div>
 
     <div class="imdb-link">
-      <a href="https://www.imdb.com" target="_blank" class="imdb-cta">
+      <a href="https://www.imdb.com/name/nm12877647/" target="_blank" rel="noopener noreferrer" class="imdb-cta">
         <span class="line-deco"></span>
         FIND MORE ON IMDB
         <span class="line-deco"></span>
