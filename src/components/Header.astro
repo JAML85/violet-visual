@@ -1,4 +1,29 @@
-<header class="main-header"><div class="container header-inner">
-<a class="brand" href="/" aria-label="Juan Manchado home">Juan Manchado<span>Senior Environment / Sets &amp; Props Modeler</span></a>
-<nav aria-label="Main navigation"><a class="nav-link" href="/#portfolio">Work</a><a class="nav-link" href="/#shows">Credits</a><a class="nav-link" href="/#about">About</a><a class="nav-link" href="mailto:juan.manchado@gmail.com">Contact ↗</a></nav>
-</div></header>
+<header class="main-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="Juan Manchado home">
+      Juan Manchado
+      <span>Senior Environment / Sets &amp; Props Modeler</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a class="nav-link" href="/#portfolio">Portfolio</a>
+      <a class="nav-link" href="/professional">Professional</a>
+      <a class="nav-link" href="/personal">Personal</a>
+      <a class="nav-link" href="/#about">About</a>
+      <a class="nav-link" href="mailto:juan.manchado@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+<style>
+  .brand { font-family: 'Bebas Neue', sans-serif; font-size: 34px; font-weight: 400; letter-spacing: .07em; line-height: 1; }
+  .brand span { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: .025em; line-height: 1.5; margin-top: 6px; }
+  .nav-link { text-transform: uppercase; font-size: 11px; letter-spacing: .06em; }
+  @media (max-width: 900px) {
+    .header-inner { flex-direction: column; align-items: center; gap: 18px; }
+  }
+  @media (max-width: 600px) {
+    .brand { font-size: 29px; text-align: center; }
+    .brand span { font-size: 9px; }
+    nav { gap: 8px; flex-wrap: wrap; justify-content: center; }
+    .nav-link { font-size: 9px; letter-spacing: .015em; }
+  }
+</style>
