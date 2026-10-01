@@ -37,7 +37,7 @@ const slides = [
     {slides.map((slide, i) => (
       <div class={`slide ${i === 0 ? 'active' : ''}`} data-project={slide.project} data-studio={slide.studio} style={`background-image: url('${slide.image}')`}></div>
     ))}
-    <video id="hero-video" class="hero-video" muted loop playsinline preload="none" poster="/video/selected-work.jpg" data-src="/video/selected-work.mp4" tabindex="-1"></video>
+    <video id="hero-video" class="hero-video" muted loop playsinline preload="none" poster="/video/selected-work-v2.jpg" data-src="/video/selected-work-v2.mp4" tabindex="-1"></video>
     <!-- Overlay oscuro encima de las imágenes para que el texto sea legible -->
     <div class="carousel-overlay"></div>
   </div>
@@ -405,6 +405,7 @@ const slides = [
 </style>
 
 <script>
+  import credits from '../data/hero-montage.json';
   const slides = [...document.querySelectorAll<HTMLElement>('.slide')];
   const dots = [...document.querySelectorAll<HTMLElement>('.dot')];
   const hero = document.querySelector<HTMLElement>('.hero');
@@ -418,14 +419,9 @@ const slides = [
   let videoActive = false;
   let inView = true;
   let videoFailed = false;
-  const credits = [
-    { until: 10, project: 'Luck', studio: 'Skydance Animation', role: 'Environment / Sets & Props Surfacing' },
-    { until: 14, project: 'SuperThings', studio: 'Tandem Films · Keytoon Studios', role: 'Senior Environment / Sets & Props Modeler' },
-    { until: Infinity, project: 'Audi — A Shorter Letter', studio: 'The Frank Barton Company', role: 'Props Modeler' },
-  ];
   function updateCredit() {
     if (!video || !videoActive) return;
-    const credit = credits.find(item => video.currentTime < item.until)!;
+    const credit = credits.find(item => video.currentTime < item.until) ?? credits[credits.length - 1];
     document.getElementById('slide-project')!.textContent = credit.project;
     document.getElementById('slide-studio')!.textContent = credit.studio;
     document.getElementById('video-credit')!.textContent = credit.role;
