@@ -1,24 +1,26 @@
 ---
+// Paste a YouTube or Vimeo embed URL here when the reel is ready.
+const videoUrl = '';
 ---
 
 <section class="reel-section" id="reel">
   <div class="container">
     <div class="section-label">
       <h2>DEMO REEL 26</h2>
-      <p>COMING SOON...</p>
+      {!videoUrl && <p>COMING SOON...</p>}
     </div>
 
     <div class="reel-wrapper">
       <!-- Replace src with your Vimeo/YouTube embed URL -->
       <div class="video-frame">
-        <iframe
-          src=""
+        {videoUrl ? <iframe
+          src={videoUrl} loading="lazy"
           allow="autoplay; fullscreen; picture-in-picture"
           allowfullscreen
           title="Juan Manchado — Demo Reel 2026"
-        ></iframe>
+        ></iframe> : (
         <!-- Fallback placeholder shown when no iframe src is set -->
-        <div class="video-placeholder" aria-hidden="true">
+        <div class="video-placeholder">
           <div class="play-icon">
             <svg viewBox="0 0 80 80" fill="none">
               <circle cx="40" cy="40" r="39" stroke="currentColor" stroke-width="1" opacity="0.3"/>
@@ -27,8 +29,9 @@
             </svg>
           </div>
           <p>DEMO REEL 2026</p>
-          <p class="hint">COMING SOON...</code></p>
+          <p class="hint">COMING SOON...</p>
         </div>
+        )}
       </div>
     </div>
   </div>

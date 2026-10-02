@@ -2,23 +2,21 @@
 const shows = [
   {
     title: 'SuperThings: Rivals of Kaboom — The Movie',
-    studio: 'Tandem Films ·Keytoon Studios',
+    studio: 'Tandem Films · Keytoon Studios',
     type: 'Animation Feature Film',
     year: '2026',
-    role: 'Senior Environment/Sets&Props Modeler',
+    role: 'Senior Environment / Sets & Props Modeler',
     tag: 'FEATURE FILM',
     color: '#3b7ce5',
     image: '/portfolio/superthingsPoster.jpg',
     videoUrl: 'https://www.youtube.com/watch?v=NmbSKt5qXlc',
-
-
   },
   {
     title: 'Luck',
     studio: 'Skydance Animation',
     type: 'Animation Feature Film',
     year: '2022',
-    role: 'Environment/Sets&Props Surfacing',
+    role: 'Environment / Sets & Props Surfacing',
     tag: 'APPLE TV+',
     color: '#3be5a8',
     image: '/portfolio/luckPoster.jpg',
@@ -30,7 +28,7 @@ const shows = [
     studio: 'Able&Baker',
     type: 'Cinematic Videogame',
     year: '2022',
-    role: 'Environment/Sets&Props Modeler',
+    role: 'Environment / Sets & Props Modeler',
     tag: 'VIDEOGAME',
     color: '#e5893b',
     image: '/portfolio/angrybirdsPoster.jpg',
@@ -41,32 +39,36 @@ const shows = [
     studio: 'DØ Postproduction',
     type: 'VFX — TV Series',
     year: '2022',
-    role: 'Environment/Sets&Props Modeler',
+    role: 'Environment / Sets & Props Modeler',
     tag: 'NETFLIX',
     color: '#e53b3b',
     image: '/portfolio/skyrojoPoster.jpg',
     platform: 'NETFLIX',
     videoUrl: 'https://www.youtube.com/watch?v=VX_KygyV56o',
+    workUrl: 'https://www.youtube.com/watch?v=29ZZUrBpc8M',
+    workDescription: 'building modeling and surfacing',
   },
 {
     title: 'Sin huellas',
-    studio: 'Do Postproduction',
+    studio: 'DØ Postproduction',
     type: 'VFX — TV Series',
     year: '2022',
-    role: 'Environment/Sets&Props Modeler',
+    role: 'Environment / Sets & Props Modeler',
     tag: 'PRIME VIDEO',
     color: '#3be5a8',
     image: '/portfolio/sinhuellasPoster.jpg',
     platform: 'PRIME VIDEO',
     videoUrl: 'https://www.youtube.com/watch?v=XVTm3Zrcs4M', 
+    workUrl: 'https://www.youtube.com/watch?v=ahjMdJqMYaM',
+    workDescription: 'car glass and side mirror',
   },
 
  {
-    title: 'Lady everest',
+    title: 'Lady Everest',
     studio: 'Pixelodeon 3d',
     type: 'Documentary',
     year: '2026',
-    role: 'Senior Environment/Sets&Props Modeler',
+    role: 'Senior Environment / Sets & Props Modeler',
     tag: 'DOCUMENTARY',
     color: '#8b3be5',
     image: '/portfolio/ladyeverestPoster.jpg',
@@ -74,7 +76,7 @@ const shows = [
   },
 
 {
-    title: 'Audi presents a Shorter letter',
+    title: 'Audi — A Shorter Letter',
     studio: 'The Frank Barton Company',
     type: 'Short Animation',
     year: '2022',
@@ -91,7 +93,7 @@ const shows = [
     studio: 'Salsero Studio',
     type: 'Animated Short Film',
     year: '2022',
-    role: 'Environment/Sets&Props Modeler',
+    role: 'Environment / Sets & Props Modeler',
     tag: 'FEATURE FILM',
     color: '#3be5a8',
     image: '/portfolio/morganPoster.jpg',
@@ -103,7 +105,7 @@ const shows = [
     studio: '',
     type: 'Short Film',
     year: '2022',
-    role: 'Environment/Sets&Props Modeler',
+    role: 'Environment / Sets & Props Modeler',
     tag: 'SHORT FILM',
     color: '#3be5a8',
     image: '/portfolio/exploradoresPoster.jpg',
@@ -116,7 +118,7 @@ const shows = [
     studio: '',
     type: 'Animation Feature Film',
     year: '2022',
-    role: 'Environment/Sets&Props Modeler',
+    role: 'Environment / Sets & Props Modeler',
     tag: 'FEATURE FILM',
     color: '#3be5a8',
     image: '/portfolio/unusualPoster.jpg',
@@ -125,12 +127,12 @@ const shows = [
   },
 
 {
-    title: 'Paris&Pups season 1',
+    title: 'Paris & Pups — Season 1',
     studio: 'Hampa Studio',
-    type: 'Serie TV',
+    type: 'TV Series',
     year: '2025',
-    role: 'Environment/Sets&Props Surfacing',
-    tag: 'Serie TV',
+    role: 'Environment / Sets & Props Surfacing',
+    tag: 'TV Series',
     color: '#3be5a8',
     image: '/portfolio/parisPoster.jpg',
     platform: '',
@@ -152,15 +154,17 @@ const shows = [
 
     <div class="shows-grid">
       {shows.map((show) => {
-        // Si el show tiene configurado un videoUrl, usamos enlace <a>, si no, un <article> estático
-        const CardTag = show.videoUrl ? 'a' : 'article';
+        // Prioritize contribution clips when available, retaining the trailer source.
+        const videoUrl = 'workUrl' in show ? show.workUrl : show.videoUrl;
+        const CardTag = videoUrl ? 'a' : 'article';
         
         return (
           <CardTag 
             class="show-card" 
-            href={show.videoUrl || undefined}
-            target={show.videoUrl ? "_blank" : undefined}
-            rel={show.videoUrl ? "noopener noreferrer" : undefined}
+            href={videoUrl || undefined}
+            target={videoUrl ? "_blank" : undefined}
+            rel={videoUrl ? "noopener noreferrer" : undefined}
+            aria-label={'workDescription' in show ? `Watch ${show.title}: ${show.workDescription}` : undefined}
             style={{
               '--card-color': show.color,
               '--card-img': show.image ? `url(${show.image})` : 'none'
@@ -175,7 +179,7 @@ const shows = [
             </div>
             <div class="card-info">
               <h3>{show.title}</h3>
-              <p class="studio">{show.studio} — {show.type}</p>
+              <p class="studio">{[show.studio, show.type].filter(Boolean).join(' — ')}</p>
               <span class="role">{show.role}</span>
             </div>
           </CardTag>
@@ -184,7 +188,7 @@ const shows = [
     </div>
 
     <div class="imdb-link">
-      <a href="https://www.imdb.com" target="_blank" class="imdb-cta">
+      <a href="https://www.imdb.com/name/nm12877647/" target="_blank" rel="noopener noreferrer" class="imdb-cta">
         <span class="line-deco"></span>
         FIND MORE ON IMDB
         <span class="line-deco"></span>
@@ -365,4 +369,16 @@ const shows = [
   @media (max-width: 1100px) {
     .shows-grid { grid-template-columns: repeat(4, 1fr); }
   }
-  @
+  @media (max-width: 800px) { .shows-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 600px) {
+    .shows-section { padding: 4rem 0; }
+    .shows-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem .75rem; }
+    .card-info { padding: .8rem .5rem; }
+    .card-info h3 { font-size: .8rem; }
+    .studio { font-size: .7rem; }
+    .role { font-size: .65rem; }
+    .poster-tag { font-size: .48rem; letter-spacing: 1px; }
+    .imdb-cta { gap: .7rem; letter-spacing: 1px; }
+    .line-deco { width: 20px; }
+  }
+</style>
